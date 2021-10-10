@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Task 01</title>
+  </head>
+  <body>
+    <header class="header">
+      <!-- START 5. Неader должен содержать тематическое описание WEB-сайта с элементами графики и отформатированного текста -->
+      <div class="header-container">
+        <div class="logo"><img src="./img/cat.png" alt="Logo" /></div>
+        <h1 class="header-text">Animal shelter</h1>
+      </div>
+      <!-- END 5. Неader должен содержать тематическое описание WEB-сайта с элементами графики и отформатированного текста -->
+    </header>
+    <main class="main">
+      <div class="content">
+        <!-- START 8 -->
+        <!-- START Выбор стиля таблицы-->
+        <label for="blue-theme">Blue table style</label>
+        <input
+          type="radio"
+          id="blue-theme"
+          name="style"
+          class="radio-blue"
+          checked
+        />
+        <label for="green-theme">Green table style</label>
+        <input type="radio" id="geen-theme" name="style" class="radio-green" />
+        <!-- END Выбор стиля таблицы-->
+        <!-- START Таблица с данными-->
+        <table class="table">
+          <thead>
+            <tr>
+              <th>name</th>
+              <th>type</th>
+              <th>breed</th>
+              <th>color</th>
+              <th>age</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Myrzik</td>
+              <td>cat</td>
+              <td>persian</td>
+              <td>black</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Sharik</td>
+              <td>dog</td>
+              <td>husky</td>
+              <td>white</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td>Gav</td>
+              <td>dog</td>
+              <td>poodle</td>
+              <td>grey</td>
+              <td>2</td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- END Таблица с данными-->
+        <!-- END 8 -->
+      </div>
+      <aside class="sidebar">
+        <!--START 4. В меню должно быть как-минимум 3 пункта: home, table, about -->
+        <menu>
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./table.html">Table</a></li>
+          <li><a href="./about.html">About</a></li>
+        </menu>
+        <!--END 4. В меню должно быть как-минимум 3 пункта: home, table, about -->
+      </aside>
+    </main>
+    <footer id="footer" class="footer">
+      <!--START 6. Footer – содержит текущую дату и информацию о выполнившем задание и версию сайта-->
+      <div class="footer-container">
+        <div class="date" id="date">2021</div>
+        <div class="name">Алексей Валько</div>
+        <div class="ver">ver. 0.1</div>
+      </div>
+      <!--END 6. Footer – содержит текущую дату и информацию о выполнившем задание и версию сайта-->
+    </footer>
+    <script defer src="./script.js"></script>
+  </body>
+</html>

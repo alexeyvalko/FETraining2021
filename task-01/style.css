@@ -1,0 +1,132 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  font-size: 16px;
+  margin: 0;
+  color: #333;
+  background-color: rgb(246, 246, 253);
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+img {
+  width: 100%;
+}
+a {
+  color: rgb(57, 48, 82);
+}
+
+header {
+  /* 0 flex-grow, 0 flex-shrink, auto flex-basis */
+  flex: 0 0 auto;
+}
+
+main {
+  /* 1 flex-grow, 0 flex-shrink, auto flex-basis */
+  flex: 1 0 auto;
+}
+footer {
+  /* 0 flex-grow, 0 flex-shrink, auto flex-basis */
+  flex: 0 0 auto;
+}
+thead {
+  background-color: rgb(178, 182, 219);
+}
+th,
+td {
+  padding: 5px 5px 5px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+tr:hover {
+  background-color: rgb(226, 226, 226);
+  cursor: pointer;
+}
+.header {
+  width: 100%;
+  background-color: rgb(51, 51, 158);
+}
+.header-container {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1440px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-text {
+  font-size: 22px;
+  color: rgb(223, 223, 223);
+}
+.logo {
+  width: 100%;
+  max-width: 100px;
+}
+.main {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1440px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.content {
+  width: 100%;
+  padding: 10px;
+}
+.sidebar {
+  padding: 10px;
+  width: 100%;
+  max-width: 300px;
+}
+.radio-blue,
+.radio-green {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.radio-blue:checked ~ table {
+  background-color: rgb(215, 217, 241);
+}
+
+.radio-green:checked ~ table {
+  background-color: rgb(220, 241, 215);
+}
+.radio-green:checked ~ table thead {
+  background-color: rgb(131, 204, 113);
+}
+.table {
+  width: 100%;
+  text-align: left;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.footer {
+  width: 100%;
+  color: rgb(223, 223, 223);
+  background-color: rgb(51, 51, 158);
+}
+.footer-container {
+  padding: 20px 0;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1440px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
