@@ -7,27 +7,31 @@
   </head>
   <body>
     <header class="header">
-      <!-- START 5. Неader должен содержать тематическое описание WEB-сайта с элементами графики и отформатированного текста -->
       <div class="header-container">
         <div class="logo"><img src="./img/cat.png" alt="Logo" /></div>
         <h1 class="header-text">Animal shelter</h1>
       </div>
-      <!-- END 5. Неader должен содержать тематическое описание WEB-сайта с элементами графики и отформатированного текста -->
     </header>
     <main class="main">
       <div class="content">
-        <!--START 9.-->
-        <!--START инофрмация об авторе -->
-        <ul>
-          <li>Author: Alexey Valko</li>
-          <li>
-            Author email:
-            <a href="mailto:valko.alexey@gmail.com">valko.alexey@gmail.com</a>
-          </li>
-        </ul>
+        <p>Инофрмация об авторе</p>
+        <!--START 1 Микроформат  h-card-->
+        <div class="h-card">
+          <div class="p-name">Алексей Валько</div>
+          <div class="p-tel">+37567777-77-77</div>
+          <div class="u-email">valko.alexey@gmail.com</div>
+        </div>
+        <!--END 1 Микроформат  h-card-->
+        <!--START 1 Микроформат  h-adr -->
+        <div class="h-adr">
+          <div class="p-street-address">пл. Победы 666</div>
+          <span class="p-locality">Гомель</span>,
+          <span class="p-region" title="Гомельская область">Гомельская область</span>
+          <span class="p-postal-code">246000</span>
+          <div class="p-country-name">Беларусь</div>
+        </div>
+        <!--END 1 Микроформат  h-adr-->
         <p>You can send me an email by filling out the form below.</p>
-        <!--END инофрмация об авторе -->
-        <!--START форма обратной связи c автором -->
         <form action="#">
           <div class="form-field">
             <label for="name">Name</label>
@@ -57,27 +61,21 @@
           </div>
           <button>Send</button>
         </form>
-        <!--END форма обратной связи автором -->
-        <!--END 9 -->
       </div>
       <aside class="sidebar">
-        <!--START 4. В меню должно быть как-минимум 3 пункта: home, table, about -->
         <menu>
           <li><a href="./index.html">Home</a></li>
           <li><a href="./table.html">Table</a></li>
           <li><a href="./about.html">About</a></li>
         </menu>
-        <!--END 4. В меню должно быть как-минимум 3 пункта: home, table, about -->
       </aside>
     </main>
     <footer id="footer" class="footer">
-      <!--START 6. Footer – содержит текущую дату и информацию о выполнившем задание и версию сайта-->
       <div class="footer-container">
         <div class="date" id="date">2021</div>
         <div class="name">Алексей Валько</div>
         <div class="ver">ver. 0.1</div>
       </div>
-      <!--END 6. Footer – содержит текущую дату и информацию о выполнившем задание и версию сайта-->
     </footer>
     <script defer src="./script.js"></script>
   </body>
