@@ -15,7 +15,8 @@
     <main class="main">
       <div class="content">
         <!--START 1 Микроформат  h-entry -->
-        <div class="h-entry">
+          <!--START 4 добавил тег article-->
+        <article class="h-entry">
           <h2 class="p-name">Adopt a Pet</h2>
           <p class="e-content">
             We have animals of many <strong>types</strong>,
@@ -24,20 +25,25 @@
             <i>Search available pets now</i> by selecting the type of pet you
             are <u>interested in</u>.
           </p>
-        </div>
+        </article>
+        <!--END 4 добавил тег article-->
         <!-- END 1 Микроформат  h-entry -->
       </div>
       <aside class="sidebar">
-        <menu>
-          <li><a href="./index.html">Home</a></li>
-          <li><a href="./table.html">Table</a></li>
-          <li><a href="./about.html">About</a></li>
-        </menu>
+        <!--START 4 добавил тег nav-->
+        <nav>
+          <menu>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./table.html">Table</a></li>
+            <li><a href="./about.html">About</a></li>
+          </menu>
+        </nav>
+        <!--END 4 добавил тег nav-->
       </aside>
     </main>
     <footer id="footer" class="footer">
       <div class="footer-container">
-        <div class="date" id="date">2021</div>
+        <time class="date" id="date">2021</time>
         <div class="name">Алексей Валько</div>
         <div class="ver">ver. 0.1</div>
       </div>
