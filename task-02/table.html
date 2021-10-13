@@ -5,7 +5,8 @@
     <link rel="stylesheet" href="./style.css" />
     <title>Task 02</title>
   </head>
-  <body>
+  <!--START 7 RDFa тип WebPage-->
+  <body vocab="https://schema.org/" typeof="WebPage">
     <header class="header">
       <div class="header-container">
         <div class="logo"><img src="./img/cat.png" alt="Logo" /></div>
@@ -24,7 +25,8 @@
         />
         <label for="green-theme">Green table style</label>
         <input type="radio" id="geen-theme" name="style" class="radio-green" />
-        <table class="table">
+        <!--START 7 RDFa тип WebPageElement-->
+        <table class="table" vocab="https://schema.org/" typeof="WebPageElement">
           <thead>
             <tr>
               <th>name</th>
@@ -35,29 +37,36 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="h-card">
+              <!--START 1 Микроформат  h-item-->
+            <tr class="h-item">
               <td class="p-name">Myrzik</td>
-              <td class="p-category">cat</td>
-              <td class="p-note">persian</td>
-              <td class="p-note">black</td>
-              <td class="p-note">1</td>
+              <td>cat</td>
+              <td>persian</td>
+              <td>black</td>
+              <td>1</td>
             </tr>
-            <tr class="h-card">
+            <!--END 1 Микроформат  h-item-->
+            <!--START 1 Микроформат  h-item-->
+            <tr class="h-item">
               <td class="p-name"> Sharik</td>
-              <td class="p-category">dog</td>
-              <td class="p-note">husky</td>
-              <td class="p-note">white</td>
-              <td class="p-note">5</td>
+              <td>dog</td>
+              <td>husky</td>
+              <td>white</td>
+              <td>5</td>
             </tr>
-            <tr class="h-card">
+            <!--END 1 Микроформат  h-item-->
+            <!--START 1 Микроформат  h-item-->
+            <tr class="h-item">
               <td class="p-name">Gav</td>
-              <td class="p-category">dog</td>
-              <td class="p-note">poodle</td>
-              <td class="p-note">grey</td>
-              <td class="p-note">2</td>
+              <td>dog</td>
+              <td>poodle</td>
+              <td>grey</td>
+              <td>2</td>
             </tr>
+            <!--END 1 Микроформат  h-item-->
           </tbody>
         </table>
+        <!--END 7 RDFa тип WebPageElement-->
       </div>
       <aside class="sidebar">
         <!--START 4 добавил тег nav-->
@@ -74,10 +83,11 @@
     <footer id="footer" class="footer">
       <div class="footer-container">
         <time class="date" id="date">2021</time>
-        <div class="name">Алексей Валько</div>
+        <div class="name" property="author">Алексей Валько</div>
         <div class="ver">ver. 0.1</div>
       </div>
     </footer>
     <script defer src="./script.js"></script>
   </body>
+    <!--END 7 RDFa тип AboutPage-->
 </html>

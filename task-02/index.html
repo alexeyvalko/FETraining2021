@@ -5,7 +5,8 @@
     <link rel="stylesheet" href="./style.css" />
     <title>Task 02</title>
   </head>
-  <body>
+  <!--START 7 RDFa тип WebPage-->
+  <body vocab="https://schema.org/" typeof="WebPage">
     <header class="header">
       <div class="header-container">
         <div class="logo"><img src="./img/cat.png" alt="Logo" /></div>
@@ -44,10 +45,11 @@
     <footer id="footer" class="footer">
       <div class="footer-container">
         <time class="date" id="date">2021</time>
-        <div class="name">Алексей Валько</div>
+        <div class="name" property="author">Алексей Валько</div>
         <div class="ver">ver. 0.1</div>
       </div>
     </footer>
     <script defer src="./script.js"></script>
   </body>
+  <!--END 7 RDFa тип WebPage-->
 </html>

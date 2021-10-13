@@ -5,7 +5,8 @@
     <link rel="stylesheet" href="./style.css" />
     <title>Task 02</title>
   </head>
-  <body>
+   <!--START 7 RDFa тип AboutPage-->
+  <body vocab="https://schema.org/" typeof="AboutPage">
     <header class="header">
       <div class="header-container">
         <div class="logo"><img src="./img/cat.png" alt="Logo" /></div>
@@ -16,21 +17,25 @@
       <div class="content">
         <p>Инофрмация об авторе</p>
         <!--START 1 Микроформат  h-card-->
-        <div class="h-card">
-          <div class="p-name">Алексей Валько</div>
-          <div class="p-tel">+37567777-77-77</div>
-          <div class="u-email">valko.alexey@gmail.com</div>
+        <!--START 7 RDFa тип Person-->
+        <div vocab="https://schema.org/" class="h-card" typeof="Person">
+          <div class="p-name" property="name">Алексей Валько</div>
+          <div class="p-tel" property="telephone">+37567777-77-77</div>
+          <div class="u-email" property="email">valko.alexey@gmail.com</div>
         </div>
+        <!--END 7 RDFa тип Person-->
         <!--END 1 Микроформат  h-card-->
         <!--START 1 Микроформат  h-adr -->
         <!--START 4 добавил тег address-->
-        <address class="h-adr">
-          <div class="p-street-address">пл. Победы 666</div>
-          <span class="p-locality">Гомель</span>,
-          <span class="p-region" title="Гомельская область">Гомельская область</span>
-          <span class="p-postal-code">246000</span>
-          <div class="p-country-name">Беларусь</div>
+        <!--START 7 RDFa тип PostalAddress-->
+        <address class="h-adr" property="address" typeof="PostalAddress">
+          <div class="p-street-address" property="streetAddress">пл. Победы 666</div>
+          <span class="p-locality" property="addressLocality">Гомель</span>,
+          <span class="p-region" title="Гомельская область" property="addressRegion">Гомельская область</span>
+          <span class="p-postal-code" property="postalCode">246000</span>
+          <div class="p-country-name" property="addressCountry">Беларусь</div>
         </address>
+        <!--END 7 RDFa тип PostalAddress-->
         <!--END 4 добавил тег address-->
         <!--END 1 Микроформат  h-adr-->
         <p>You can send me an email by filling out the form below.</p>
@@ -67,22 +72,23 @@
       <aside class="sidebar">
         <!--START 4 добавил тег nav-->
         <nav>
-        <menu>
-          <li><a href="./index.html">Home</a></li>
-          <li><a href="./table.html">Table</a></li>
-          <li><a href="./about.html">About</a></li>
-        </menu>
-      </nav>
-      <!--END 4 добавил тег nav-->
+          <menu>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./table.html">Table</a></li>
+            <li><a href="./about.html">About</a></li>
+          </menu>
+        </nav>
+        <!--END 4 добавил тег nav-->
       </aside>
     </main>
     <footer id="footer" class="footer">
       <div class="footer-container">
         <time class="date" id="date">2021</time>
-        <div class="name">Алексей Валько</div>
+        <div class="name" property="author">Алексей Валько</div>
         <div class="ver">ver. 0.1</div>
       </div>
     </footer>
     <script defer src="./script.js"></script>
   </body>
+  <!--END 7 RDFa тип AboutPage-->
 </html>
