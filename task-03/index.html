@@ -3,19 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="./style.css" />
-    <title>Task 02</title>
+    <title>Task 03</title>
   </head>
   <body vocab="https://schema.org/" typeof="WebPage">
     <header class="header">
       <div class="header-container">
         <div class="logo"><img src="./img/cat.png" alt="Logo" /></div>
         <h1 class="header-text">Animal shelter</h1>
+        <nav class="horizontal-menu">
+          <ul>
+            <li><a class="menu-link" href="./index.html">Home</a></li>
+            <li><a class="menu-link" href="./table.html">Table</a></li>
+            <li><a class="menu-link" href="./about.html">About</a></li>
+          </ul>
+        </nav>
       </div>
     </header>
     <main class="main">
       <div class="content">
         <article class="h-entry">
           <h2 class="p-name">Adopt a Pet</h2>
+          <img src="./img/karsten-winegeart-WaMMo0it6Vg-unsplash.jpg" alt="dogs" class="img-left"> 
           <p class="e-content">
             We have animals of many <strong>types</strong>,
             <strong>breeds</strong>, <strong>sizes</strong> and
@@ -24,7 +32,16 @@
             are <u>interested in</u>.
           </p>
         </article>
-      </div>
+        <section class="news-section">
+          <h2 class="p-name">News</h2>
+        <div class="news-container">
+          <div class="news-item"></div>
+          <div class="news-item"></div>
+          <div class="news-item"></div>
+          <div class="news-item"></div>
+        </div> 
+        </section>
+       </div>
       <aside class="sidebar">
         <nav>
           <menu>
@@ -39,7 +56,7 @@
       <div class="footer-container">
         <time class="date" id="date">2021</time>
         <div class="name" property="author">Алексей Валько</div>
-        <div class="ver">ver. 0.1</div>
+        <div class="ver">ver. 0.3</div>
       </div>
     </footer>
     <script defer src="./script.js"></script>
