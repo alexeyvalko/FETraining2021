@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="./style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Task 03</title>
   </head>
   <body vocab="https://schema.org/" typeof="AboutPage">
@@ -21,9 +21,12 @@
       </div>
     </header>
     <main class="main">
-     
       <div class="content">
-        <img src="./img/alvan-nee-ZCHj_2lJP00-unsplash.jpg" alt="dogs" class="img-right"> 
+        <img
+          src="./img/alvan-nee-ZCHj_2lJP00-unsplash.jpg"
+          alt="dogs"
+          class="img-right"
+        />
         <p>Инофрмация об авторе</p>
         <div vocab="https://schema.org/" class="h-card" typeof="Person">
           <div class="p-name" property="name">Алексей Валько</div>
@@ -31,49 +34,65 @@
           <div class="u-email" property="email">valko.alexey@gmail.com</div>
         </div>
         <address class="h-adr" property="address" typeof="PostalAddress">
-          <div class="p-street-address" property="streetAddress">пл. Победы 666</div>
+          <div class="p-street-address" property="streetAddress">
+            пл. Победы 666
+          </div>
           <span class="p-locality" property="addressLocality">Гомель</span>,
-          <span class="p-region" title="Гомельская область" property="addressRegion">Гомельская область</span>
+          <span
+            class="p-region"
+            title="Гомельская область"
+            property="addressRegion"
+            >Гомельская область</span
+          >
           <span class="p-postal-code" property="postalCode">246000</span>
           <div class="p-country-name" property="addressCountry">Беларусь</div>
         </address>
-        <p>You can send me an email by filling out the form below.</p>
-        <form action="#">
-          <div class="form-field">
-            <label for="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Your name*"
-              required
-            />
-          </div>
-          <div class="form-field">
-            <label for="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Your email*"
-              required
-            />
-          </div>
-          <div class="form-field">
-            <div class="label-wrapper">
-              <label for="message">Message</label>
+        <section class="form-section">
+          <p>You can send me an email by filling out the form below.</p>
+          <form action="#" class="form">
+            <div class="form-field">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="input"
+                placeholder="Your name*"
+                required
+              />
             </div>
-            <textarea id="message" name="message" required></textarea>
-          </div>
-          <button>Send</button>
-        </form>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input
+                class="input"
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Your email*"
+                required
+              />
+            </div>
+            <div class="form-field">
+              <div class="label-wrapper">
+                <label for="message">Message</label>
+              </div>
+              <textarea
+                id="message"
+                name="message"
+                class="text-area"
+                required
+              ></textarea>
+            </div>
+            <button class="btn">Send</button>
+          </form>
+        </section>
       </div>
       <aside class="sidebar">
         <nav>
-          <menu>
-            <li><a href="./index.html">Home</a></li>
-            <li><a href="./table.html">Table</a></li>
-            <li><a href="./about.html">About</a></li>
+          <menu class="menu">
+            <li class="menu-item"><a href="./index.html">Home</a></li>
+            <li class="menu-item"><a href="./table.html">Table</a></li>
+            <li class="menu-item"><a href="./about.html">About</a></li>
           </menu>
         </nav>
       </aside>
