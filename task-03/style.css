@@ -44,7 +44,11 @@ td {
 main {
   padding-top: 100px;
 }
-
+h3,
+h4 {
+  padding: 0;
+  margin: 0;
+}
 tr:hover {
   background-color: rgb(226, 226, 226);
   cursor: pointer;
@@ -59,10 +63,9 @@ tr:hover {
   z-index: 10;
   background-color: rgb(51, 51, 158);
   height: 100px;
-  max-height: 100px;
 }
 .header-container {
-  margin:  0 auto;
+  margin: 0 auto;
   width: 100%;
   max-width: 1440px;
   display: flex;
@@ -118,9 +121,11 @@ tr:hover {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 .content {
   width: 100%;
+  max-width: 1140px;
   padding: 10px;
 }
 .sidebar {
@@ -146,7 +151,7 @@ tr:hover {
 }
 
 .table-wrapper {
-  width: 100%;
+  max-width: 100%;
   overflow-x: auto;
 }
 .table {
@@ -157,26 +162,89 @@ tr:hover {
   border-spacing: 0;
   table-layout: fixed;
 }
+
 .news-section {
+  padding-top: 20px;
   clear: both;
 }
 
 .news-container {
   padding: 10px;
   width: 100%;
-  border: 1px solid rgb(160, 160, 160);
   border-radius: 5px;
   display: flex;
   gap: 15px;
-  align-items: center;
-  justify-content: space-between;
+  align-items: stretch;
+  justify-content: flex-start;
   flex-wrap: wrap;
 }
 
 .news-item {
-  border: 1px solid rgb(160, 160, 160);
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
   width: 355px;
-  min-height:200px;
+  min-height: 400px;
+  overflow: hidden;
+}
+
+.news-image-container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+.news-title {
+  color: rgb(255, 255, 255);
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  max-width: 90%;
+  font-weight: 600;
+  z-index: 2;
+}
+.news-image-container a {
+  position: relative;
+  display: inline-block;
+  color: rgb(255, 255, 255);
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-decoration: none;
+  background-size: cover;
+}
+.news-title span {
+  line-height: 25px;
+  position: relative;
+}
+.news-date {
+  padding: 10px 5px 5px 5px;
+  font-size: 14px;
+  color: rgb(158, 158, 158);
+}
+.news-image-cover {
+  width: 100%;
+  height: 100%;
+  background: rgb(3, 3, 3);
+  background: linear-gradient(
+    180deg,
+    rgba(3, 3, 3, 1) 25%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.news-image-container img {
+  object-fit: cover;
+  object-position: 50% 50%;
+  width: 100%;
+  height: 100%;
+}
+
+.news-description {
+  margin: 0;
+  padding: 5px;
 }
 
 .footer {
