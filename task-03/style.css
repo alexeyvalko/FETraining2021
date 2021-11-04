@@ -41,9 +41,6 @@ td {
   border-bottom: 1px solid #f0f0f0;
 }
 
-main {
-  padding-top: 100px;
-}
 h3,
 h4 {
   padding: 0;
@@ -53,6 +50,15 @@ tr:hover {
   background-color: rgb(226, 226, 226);
   cursor: pointer;
 }
+label {
+  display: inline-block;
+}
+
+thead {
+  position: sticky;
+  top: 0;
+}
+
 .header {
   display: flex;
   justify-content: start;
@@ -65,6 +71,7 @@ tr:hover {
   height: 100px;
 }
 .header-container {
+  padding: 20px 10px;
   margin: 0 auto;
   width: 100%;
   max-width: 1440px;
@@ -115,6 +122,7 @@ tr:hover {
   max-width: 220px;
 }
 .main {
+  padding-top: 100px;
   margin: 0 auto;
   width: 100%;
   max-width: 1440px;
@@ -124,13 +132,13 @@ tr:hover {
   flex-wrap: wrap;
 }
 .content {
-  width: 100%;
+  width: 70%;
   max-width: 1140px;
   padding: 10px;
 }
 .sidebar {
   padding: 10px;
-  width: 100%;
+  width: 30%;
   max-width: 300px;
 }
 .radio-blue,
@@ -151,8 +159,11 @@ tr:hover {
 }
 
 .table-wrapper {
+  margin-top: 20px;
   max-width: 100%;
-  overflow-x: auto;
+  max-height: 600px;
+  overflow: auto;
+  margin-bottom: 50px;
 }
 .table {
   width: 800px;
@@ -176,11 +187,12 @@ tr:hover {
   align-items: stretch;
   justify-content: flex-start;
   flex-wrap: wrap;
+  padding-bottom: 50px;
 }
 
 .news-item {
   box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
-  width: 355px;
+  width: 32%;
   min-height: 400px;
   overflow: hidden;
 }
@@ -215,7 +227,7 @@ tr:hover {
   position: relative;
 }
 .news-date {
-  padding: 10px 5px 5px 5px;
+  padding: 10px 10px 5px 10px;
   font-size: 14px;
   color: rgb(158, 158, 158);
 }
@@ -259,6 +271,10 @@ tr:hover {
 .menu-item:hover {
   background-color: rgb(228, 228, 228);
   cursor: pointer;
+}
+
+.form-section {
+  margin-bottom: 50px;
 }
 
 .form {
@@ -318,8 +334,70 @@ tr:hover {
   justify-content: space-between;
 }
 
-@media screen and (max-width: 419px)  {
+@media screen and (max-width: 768px) {
+  .news-item {
+    width: 46%;
+  }
+  
+  .form-section {
+    clear: both;
+  }
+
+}
+
+
+@media screen and (max-width: 419px) {
+  h2 {
+    text-align: center;
+  }
+  .header-container {
+    gap: 5px;
+  }
+
+  .header-text {
+    font-size: 20px;
+    margin: 5px 0;
+    padding: 5px 0;
+  }
+
+  .logo {
+    width: 50px;
+    height: 50px;
+  }
+  .header {
+    height: 240px;
+  }
+  .main {
+    padding-top: 240px;
+  }
+
+  .menu {
+    text-align: center;
+    padding: 0;
+  }
+ .content {
+   width: 100%;
+ }
+  .sidebar {
+    width: 100%;
+    max-width: 100%;
+  }
+  .news-item {
+    width: 100%;
+  }
+  .horizontal-menu ul {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .img-right,
   .img-left {
     float: none;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .header-container {
+    flex-direction: column;
   }
 }
