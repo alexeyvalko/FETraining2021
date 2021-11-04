@@ -192,7 +192,8 @@ thead {
 
 .news-item {
   box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
-  width: 32%;
+  width: 31%;
+  min-width: 200px;
   min-height: 400px;
   overflow: hidden;
 }
@@ -274,6 +275,7 @@ thead {
 }
 
 .form-section {
+  padding: 20px 0;
   margin-bottom: 50px;
 }
 
@@ -334,7 +336,7 @@ thead {
   justify-content: space-between;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   .news-item {
     width: 46%;
   }
