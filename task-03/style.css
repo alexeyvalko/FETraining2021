@@ -16,9 +16,9 @@ body {
   color: #333;
   background-color: rgb(246, 246, 253);
   font-family: Arial, Helvetica, sans-serif;
-  display: grid; /* Пункт 7: элементы footer, main размещены с исользованием Grid */
+  display: grid; /* 7. Размещения элементов на страницах оформить с использованием CSS Grid Layout. Элементы footer, main размещены с исользованием Grid */
   grid-template-columns: 100%;
-  grid-template-rows: auto 100px;
+  grid-template-rows: auto 100px; /* Высота main auto, высота footer 100px */
   height: 100%;
 }
 
@@ -55,16 +55,16 @@ label {
 }
 
 thead {
-  position: sticky;
+  position: sticky; /* 4. При размещении элементов следует использовать абсолютное / относительное / фиксированное / прикреплённое позиционирование. */
   top: 0;
 }
 
 .header {
-  display: flex;
+  display: flex; 
   justify-content: start;
   align-items: center;
   width: 100%;
-  position: fixed;
+  position: fixed; /* 4. При размещении элементов следует использовать абсолютное / относительное / фиксированное / прикреплённое позиционирование. */
   top: 0;
   z-index: 10;
   background-color: rgb(51, 51, 158);
@@ -89,7 +89,7 @@ thead {
   width: 100%;
   max-width: 100px;
 }
-.horizontal-menu {
+.horizontal-menu { /* 5. Реализовать горизонтальное меню на страницах с использованием позиционирования (при прокрутке страницы главное меню должно оставаться на месте). Меню находится внутри элемента header к которому применено position fixed. При прокрутке меню остается на месте. */
   margin: 0 auto;
   width: 100%;
   max-width: 1024px;
@@ -112,12 +112,12 @@ thead {
 }
 
 .img-left {
-  float: left;
+  float: left; /* 3 На страницах должны быть размещены элементы с различными режимами обтекания. У изображения добавлен float left */
   margin: 0 30px 10px 0;
   max-width: 220px;
 }
 .img-right {
-  float: right;
+  float: right; /* 3 На страницах должны быть размещены элементы с различными режимами обтекания. У изображения добавлен float right */
   margin: 0 0px 10px 30px;
   max-width: 220px;
 }
@@ -162,7 +162,7 @@ thead {
   margin-top: 20px;
   max-width: 100%;
   max-height: 600px;
-  overflow: auto;
+  overflow: auto; /* 8. Обеспечить корректное отображение страниц при смене разрешения (размера окна браузера). При изменении размеров окна браузера или количества инофрмации в таблице элементу будит добовлятся scroll bar по осям X или Y, что позволяет обеспечить корректное отображение таблицы при смене размера окна браузера. */
   margin-bottom: 50px;
 }
 .table {
@@ -182,7 +182,7 @@ thead {
 .news-container {
   width: 100%;
   border-radius: 5px;
-  display: flex;
+  display: flex; /* 6. Реализовать новостную панель на главной странице с использованием гибкой компоновки блоков */
   gap: 15px;
   align-items: stretch;
   justify-content: flex-start;
@@ -199,14 +199,14 @@ thead {
 }
 
 .news-image-container {
-  position: relative;
+  position: relative; /* 4. При размещении элементов следует использовать абсолютное / относительное / фиксированное / прикреплённое позиционирование. Этому элементу добалено position: relative чтобы можно было позитционировать внутри него элементы с position: absolute. */
   width: 100%;
   height: 200px;
   overflow: hidden;
 }
 .news-title {
   color: rgb(255, 255, 255);
-  position: absolute;
+  position: absolute; /* 4. При размещении элементов следует использовать абсолютное / относительное / фиксированное / прикреплённое позиционирование. */
   top: 10px;
   left: 10px;
   max-width: 90%;
@@ -214,18 +214,15 @@ thead {
   z-index: 2;
 }
 .news-image-container a {
-  position: relative;
-  display: inline-block;
+  display: block;
   color: rgb(255, 255, 255);
-  position: absolute;
-  top: 0;
-  left: 0;
+  width: 100%;
+  height: 100%;
   text-decoration: none;
   background-size: cover;
 }
 .news-title span {
   line-height: 25px;
-  position: relative;
 }
 .news-date {
   padding: 10px 10px 5px 10px;
@@ -336,7 +333,7 @@ thead {
   justify-content: space-between;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1024px) { /* 8. Обеспечить корректное отображение страниц при смене разрешения (размера окна браузера). Корректное отоброжение при смене разрешения обеспечил при помощи медиа-запросов и отноительных величин ( таких как %) */
   .news-item {
     width: 46%;
   }
@@ -346,7 +343,6 @@ thead {
   }
 
 }
-
 
 @media screen and (max-width: 419px) {
   h2 {

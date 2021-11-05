@@ -7,10 +7,12 @@
     <title>Task 03</title>
   </head>
   <body vocab="https://schema.org/" typeof="WebPage">
+    <!-- START 5. Реализовать горизонтальное меню на страницах с использованием позиционирования (при прокрутке страницы главное меню должно оставаться на месте). Меню находится внутри элемента header к которому применено position fixed. При прокрутке меню остается на месте. -->
     <header class="header">
       <div class="header-container">
         <div class="logo"><img src="./img/cat.png" alt="Logo" /></div>
         <h1 class="header-text">Animal shelter</h1>
+        <!-- START Горизонтальное меню-->
         <nav class="horizontal-menu">
           <ul>
             <li><a class="menu-link" href="./index.html">Home</a></li>
@@ -18,17 +20,21 @@
             <li><a class="menu-link" href="./about.html">About</a></li>
           </ul>
         </nav>
+            <!-- END Горизонтальное меню-->
       </div>
     </header>
+       <!-- END 5. Реализовать горизонтальное меню на страницах с использованием позиционирования (при прокрутке страницы главное меню должно оставаться на месте). Меню находится внутри элемента header к которому применено position fixed. При прокрутке меню остается на месте. -->
     <main class="main">
       <div class="content">
         <article class="h-entry">
           <h2 class="p-name">Adopt a Pet</h2>
+           <!--START 3 На страницах должны быть размещены элементы с различными режимами обтекания. У изображения добавлен float left-->
           <img
             src="./img/karsten-winegeart-WaMMo0it6Vg-unsplash.jpg"
             alt="dogs"
             class="img-left"
           />
+           <!--END 3 На страницах должны быть размещены элементы с различными режимами обтекания. У изображения добавлен float left-->
           <p class="e-content">
             We have animals of many <strong>types</strong>,
             <strong>breeds</strong>, <strong>sizes</strong> and
@@ -57,8 +63,10 @@
           </ul>
           
         </article>
+        
         <section class="news-section">
           <h2 class="p-name">News</h2>
+          <!--START 6. Реализовать новостную панель на главной странице с использованием гибкой компоновки блоков-->
           <div class="news-container">
             <div class="news-item">
               <div class="news-image-container">
@@ -82,7 +90,9 @@
             <div class="news-item">
               <div class="news-image-container">
                 <a href="#">
+                  <!--START 4 При размещении элементов следует использовать различное позиционирование. Применено position absolute-->
                   <h4 class="news-title"><span>Some title</span></h4>
+                    <!--END 4 START 4 При размещении элементов следует использовать различное позиционирование. Применено position absolute-->
                   <img
                     src="./img/jametlene-reskp-fliwkBbS7oM-unsplash.jpg"
                     alt="image"
@@ -120,7 +130,9 @@
             <div class="news-item">
               <div class="news-image-container">
                 <a href="#">
+                   <!--START 4 При размещении элементов следует использовать различное позиционирование. Применено position absolute-->
                   <h4 class="news-title"><span>12 Weeks of Giving at the Bruce Company</span></h4>
+                   <!--END 4 START 4 При размещении элементов следует использовать различное позиционирование. Применено position absolute-->
                   <img
                     src="./img/ricky-kharawala-adK3Vu70DEQ-unsplash.jpg"
                     alt="image"
@@ -159,6 +171,7 @@
               </p>
             </div>
           </div>
+           <!--END 6. Реализовать новостную панель на главной странице с использованием гибкой компоновки блоков-->
         </section>
       </div>
       <aside class="sidebar">

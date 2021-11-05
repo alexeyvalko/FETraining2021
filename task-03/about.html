@@ -7,26 +7,32 @@
     <title>Task 03</title>
   </head>
   <body vocab="https://schema.org/" typeof="AboutPage">
-    <header class="header">
-      <div class="header-container">
-        <div class="logo"><img src="./img/cat.png" alt="Logo" /></div>
-        <h1 class="header-text">Animal shelter</h1>
-        <nav class="horizontal-menu">
-          <ul>
-            <li><a class="menu-link" href="./index.html">Home</a></li>
-            <li><a class="menu-link" href="./table.html">Table</a></li>
-            <li><a class="menu-link" href="./about.html">About</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+       <!-- START 5. Реализовать горизонтальное меню на страницах с использованием позиционирования (при прокрутке страницы главное меню должно оставаться на месте). Меню находится внутри элемента header к которому применено position fixed. При прокрутке меню остается на месте. -->
+       <header class="header">
+        <div class="header-container">
+          <div class="logo"><img src="./img/cat.png" alt="Logo" /></div>
+          <h1 class="header-text">Animal shelter</h1>
+          <!-- START Горизонтальное меню-->
+          <nav class="horizontal-menu">
+            <ul>
+              <li><a class="menu-link" href="./index.html">Home</a></li>
+              <li><a class="menu-link" href="./table.html">Table</a></li>
+              <li><a class="menu-link" href="./about.html">About</a></li>
+            </ul>
+          </nav>
+              <!-- END Горизонтальное меню-->
+        </div>
+      </header>
+         <!-- END 5. Реализовать горизонтальное меню на страницах с использованием позиционирования (при прокрутке страницы главное меню должно оставаться на месте). Меню находится внутри элемента header к которому применено position fixed. При прокрутке меню остается на месте. -->
     <main class="main">
       <div class="content">
+        <!--START 3 На страницах должны быть размещены элементы с различными режимами обтекания. У изображения добавлен float right-->
         <img
           src="./img/alvan-nee-ZCHj_2lJP00-unsplash.jpg"
           alt="dogs"
           class="img-right"
         />
+        <!--END 3 На страницах должны быть размещены элементы с различными режимами обтекания. У изображения добавлен float right-->
         <p>Инофрмация об авторе</p>
         <div vocab="https://schema.org/" class="h-card" typeof="Person">
           <div class="p-name" property="name">Алексей Валько</div>
