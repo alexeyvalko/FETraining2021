@@ -3,16 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet/less" type="text/css" href="styles.less" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task 03</title>
+    <title>Task 04</title>
   </head>
   <body vocab="https://schema.org/" typeof="WebPage">
-       <!-- START 5. Реализовать горизонтальное меню на страницах с использованием позиционирования (при прокрутке страницы главное меню должно оставаться на месте). Меню находится внутри элемента header к которому применено position fixed. При прокрутке меню остается на месте. -->
        <header class="header">
         <div class="header-container">
           <div class="logo"><img src="./img/cat.png" alt="Logo" /></div>
           <h1 class="header-text">Animal shelter</h1>
-          <!-- START Горизонтальное меню-->
           <nav class="horizontal-menu">
             <ul>
               <li><a class="menu-link" href="./index.html">Home</a></li>
@@ -20,10 +19,8 @@
               <li><a class="menu-link" href="./about.html">About</a></li>
             </ul>
           </nav>
-              <!-- END Горизонтальное меню-->
         </div>
       </header>
-         <!-- END 5. Реализовать горизонтальное меню на страницах с использованием позиционирования (при прокрутке страницы главное меню должно оставаться на месте). Меню находится внутри элемента header к которому применено position fixed. При прокрутке меню остается на месте. -->
     <main class="main">
       <div class="content">
         <label for="blue-theme">Blue table style</label>
@@ -300,6 +297,7 @@
         <div class="ver">ver. 0.3</div>
       </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/less@4.1.1" ></script>
     <script defer src="./script.js"></script>
   </body>
 </html>
