@@ -1,11 +1,10 @@
 .imgFloat(@direction) {
-  
   float: @direction;
   margin: if((@direction = right) 0 0px 10px 30px, 0 30px 10px 0); // п.4 логическая функция
   max-width: 220px;
 }
 
-.flex(
+.flex( // п.4 примесь с множественными параметрами;
   @direction: row;
   @justifyContent: normal;
   @wrap: nowrap;
@@ -19,7 +18,7 @@
 }
 
 
-.paddingMargin() {
+.paddingMargin() { //п.4 примесь без параметров
   padding: 20px 10px;
   margin: 0 auto;
 }
