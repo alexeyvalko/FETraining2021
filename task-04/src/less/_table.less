@@ -1,0 +1,33 @@
+.radio-blue,
+.radio-green {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.radio-blue:checked ~ .table-wrapper table {
+  background-color: @tablePrimaryStyle;
+}
+
+.radio-green:checked ~ .table-wrapper table {
+  background-color: @tableSecondStyle;
+}
+.radio-green:checked ~ .table-wrapper table thead {
+  background-color: @tableSecondStyleThead;
+}
+
+.table-wrapper {
+  margin-top: 20px;
+  max-width: 100%;
+  max-height: 600px;
+  overflow: auto;
+  margin-bottom: 50px;
+}
+.table {
+  width: 800px;
+  min-width: 100%;
+  text-align: left;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+}

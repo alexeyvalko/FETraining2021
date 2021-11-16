@@ -1,0 +1,47 @@
+.main {
+  padding-top: 100px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1440px;
+  .flex(row, space-between, wrap);
+}
+
+.content {
+  width: 70%;
+  max-width: 1140px;
+  padding: 10px;
+  
+}
+.img-left {
+  .imgFloat(left);
+}
+
+.img-right {
+  .imgFloat(right);
+}
+
+.sidebar {
+  padding: 10px;
+  width: 30%;
+  max-width: 300px;
+}
+
+.menu {
+  list-style: none;
+}
+
+.menu-item {
+  width: 100%;
+  padding: 5px;
+
+  &:hover {
+    background-color: @menuItemHoverColor;
+    cursor: pointer;
+  }
+
+  & a {
+    display: inline-block;
+    width: 100%;
+  }
+}
+ 

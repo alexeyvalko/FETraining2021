@@ -4,8 +4,8 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-    "less": "lessc ./src/styles.less ./src/less-styles.css",
-    "sass": "sass ./src/styles.scss ./src/sass-styles.css"
+    "less": "lessc ./src/less/styles.less ./src/less-styles.css",
+    "sass": "sass ./src/sass/styles.scss ./src/sass-styles.css"
   },
   "author": "",
   "license": "ISC"
