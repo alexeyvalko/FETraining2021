@@ -5,7 +5,8 @@
   "main": "script.js",
   "scripts": {
     "less": "lessc ./src/less/styles.less ./src/style.css",
-    "sass": "sass ./src/sass/styles.scss ./src/style.css"
+    "sass": "sass --no-source-map ./src/sass/styles.scss ./src/style.css",
+    "watch": "sass --watch ./src/sass/styles.scss ./src/style.css"
   },
   "author": "Alexey Valko",
   "license": "ISC"
