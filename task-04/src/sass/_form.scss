@@ -1,0 +1,32 @@
+.form-section {
+  padding: 20px 0;
+  margin-bottom: 50px;
+}
+
+.form {
+  padding: 10px;
+  border: 1px solid $formBorderColor;
+  border-radius: 5px;
+  max-width: 300px;
+}
+.form-field {
+  margin: 10px 0;
+}
+
+.text-area,
+.input {
+  border: 1px solid $formFieldBorderColor;
+  background: none;
+  display: block;
+  width: 100%;
+  padding: 10px 8px;
+}
+
+.text-area {
+  resize: none;
+  min-height: 100px;
+}
+
+.btn {
+  @include button($textColorLight, $buttonColor, $buttonColorHover);
+}

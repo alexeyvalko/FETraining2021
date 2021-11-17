@@ -4,9 +4,9 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-    "less": "lessc ./src/less/styles.less ./src/less-styles.css",
-    "sass": "sass ./src/sass/styles.scss ./src/sass-styles.css"
+    "less": "lessc ./src/less/styles.less ./src/style.css",
+    "sass": "sass ./src/sass/styles.scss ./src/style.css"
   },
-  "author": "",
+  "author": "Alexey Valko",
   "license": "ISC"
 }

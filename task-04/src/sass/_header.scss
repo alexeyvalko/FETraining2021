@@ -1,0 +1,29 @@
+
+.header {
+  @include flex(row, start, nowrap, center);
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  background-color: $primaryColor;
+  height: 100px;
+
+  &-container {
+    @include paddingMargin();
+    width: 100%;
+    max-width: 1440px;
+    @include flex(row, start, nowrap, center);
+    gap: 10px;
+  }
+
+  &-text {
+    font-size: 22px;
+    color: $headerTextColor;
+  }
+}
+.logo {
+  width: 100%;
+  height: 60px;
+  max-width: 60px;
+  background: center / cover no-repeat url($logoPath);
+}

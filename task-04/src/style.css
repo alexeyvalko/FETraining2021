@@ -13,8 +13,8 @@ html {
 body {
   font-size: 18px;
   margin: 0;
-  color: #333;
-  background-color: rgb(246, 246, 253);
+  color: #333333;
+  background-color: #f6f6fd;
   font-family: Arial, Helvetica, sans-serif;
   display: grid;
   grid-template-columns: 100%;
@@ -25,16 +25,19 @@ body {
 img {
   width: 100%;
 }
+
 a {
-  color: rgb(57, 48, 82);
+  color: #393052;
 }
+
 address {
   font-style: normal;
 }
 
 thead {
-  background-color: rgb(178, 182, 219);
+  background-color: #b2b6db;
 }
+
 th,
 td {
   padding: 5px 5px 5px 0;
@@ -46,10 +49,12 @@ h4 {
   padding: 0;
   margin: 0;
 }
+
 tr:hover {
-  background-color: rgb(226, 226, 226);
+  background-color: #e2e2e2;
   cursor: pointer;
 }
+
 label {
   display: inline-block;
 }
@@ -61,13 +66,15 @@ thead {
 
 .header {
   display: flex;
+  flex-direction: row;
   justify-content: start;
+  flex-wrap: nowrap;
   align-items: center;
   width: 100%;
   position: fixed;
   top: 0;
   z-index: 10;
-  background-color: rgb(51, 51, 158);
+  background-color: #cc6699;
   height: 100px;
 }
 .header-container {
@@ -76,19 +83,24 @@ thead {
   width: 100%;
   max-width: 1440px;
   display: flex;
-  justify-content: flex-start;
+  flex-direction: row;
+  justify-content: start;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 10px;
 }
-
 .header-text {
   font-size: 22px;
-  color: rgb(223, 223, 223);
+  color: #dfdfdf;
 }
+
 .logo {
   width: 100%;
-  max-width: 100px;
+  height: 60px;
+  max-width: 60px;
+  background: center/cover no-repeat url("./img/cat.png");
 }
+
 .horizontal-menu {
   margin: 0 auto;
   width: 100%;
@@ -100,27 +112,19 @@ thead {
   padding: 10px 0px;
   width: 100%;
   display: flex;
-  justify-content: flex-start;
-  gap: 20px;
+  flex-direction: row;
+  justify-content: start;
+  flex-wrap: nowrap;
   align-items: center;
+  gap: 20px;
 }
 
 .menu-link {
-  color: rgb(223, 225, 230);
+  color: #dfdfdf;
   font-weight: 500;
   text-decoration: none;
 }
 
-.img-left {
-  float: left;
-  margin: 0 30px 10px 0;
-  max-width: 220px;
-}
-.img-right {
-  float: right;
-  margin: 0 0px 10px 30px;
-  max-width: 220px;
-}
 .main {
   padding-top: 100px;
   margin: 0 auto;
@@ -130,32 +134,79 @@ thead {
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
+  align-items: normal;
 }
+
 .content {
   width: 70%;
   max-width: 1140px;
   padding: 10px;
 }
+
+.img-left {
+  float: left;
+  max-width: 220px;
+  margin: 0 30px 10px 0;
+}
+
+.img-right {
+  float: right;
+  max-width: 220px;
+  margin: 0 0px 10px 30px;
+}
+
 .sidebar {
   padding: 10px;
   width: 30%;
   max-width: 300px;
 }
+
+.menu {
+  list-style: none;
+}
+
+.menu li:nth-child(1) {
+  background-color: #d581ab;
+}
+
+.menu li:nth-child(2) {
+  background-color: #de9cbd;
+}
+
+.menu li:nth-child(3) {
+  background-color: #e7b6cf;
+}
+
+.menu-item {
+  width: 100%;
+  padding: 5px;
+}
+.menu-item:hover {
+  background-color: #e4e4e4;
+  cursor: pointer;
+}
+.menu-item a {
+  display: inline-block;
+  width: 100%;
+}
+
 .radio-blue,
 .radio-green {
   width: 20px;
   height: 20px;
   cursor: pointer;
 }
+
 .radio-blue:checked ~ .table-wrapper table {
-  background-color: rgb(215, 217, 241);
+  background-color: #d7d9f1;
 }
 
 .radio-green:checked ~ .table-wrapper table {
-  background-color: rgb(220, 241, 215);
+  background-color: #dcf1d7;
 }
+
 .radio-green:checked ~ .table-wrapper table thead {
-  background-color: rgb(131, 204, 113);
+  background-color: #83cc71;
 }
 
 .table-wrapper {
@@ -165,6 +216,7 @@ thead {
   overflow: auto;
   margin-bottom: 50px;
 }
+
 .table {
   width: 800px;
   min-width: 100%;
@@ -183,10 +235,11 @@ thead {
   width: 100%;
   border-radius: 5px;
   display: flex;
-  gap: 15px;
-  align-items: stretch;
-  justify-content: flex-start;
+  flex-direction: row;
+  justify-content: start;
   flex-wrap: wrap;
+  align-items: stretch;
+  gap: 15px;
   padding-bottom: 50px;
 }
 
@@ -196,6 +249,7 @@ thead {
   min-width: 200px;
   min-height: 400px;
   overflow: hidden;
+  border-radius: 5px;
 }
 
 .news-image-container {
@@ -204,45 +258,13 @@ thead {
   height: 200px;
   overflow: hidden;
 }
-.news-title {
-  color: rgb(255, 255, 255);
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  max-width: 90%;
-  font-weight: 600;
-  z-index: 2;
-}
 .news-image-container a {
   display: block;
-  color: rgb(255, 255, 255);
+  color: white;
   width: 100%;
   height: 100%;
   text-decoration: none;
   background-size: cover;
-}
-.news-title span {
-  line-height: 25px;
-}
-.news-date {
-  padding: 10px 10px 5px 10px;
-  font-size: 14px;
-  color: rgb(158, 158, 158);
-}
-.news-image-cover {
-  width: 100%;
-  height: 100%;
-  background: rgb(3, 3, 3);
-  background: linear-gradient(
-    180deg,
-    rgba(3, 3, 3, 1) 25%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  opacity: 0.5;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
 }
 .news-image-container img {
   object-fit: cover;
@@ -251,24 +273,37 @@ thead {
   height: 100%;
 }
 
+.news-title {
+  color: white;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  max-width: 90%;
+  font-weight: 600;
+  z-index: 2;
+}
+
+.news-date {
+  padding: 10px 10px 5px 10px;
+  font-size: 14px;
+  color: #9e9e9e;
+}
+
+.news-image-cover {
+  width: 100%;
+  height: 100%;
+  background: #030303;
+  background: linear-gradient(180deg, #030303 25%, rgba(0, 0, 0, 0) 100%);
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
 .news-description {
   margin: 0;
   padding: 5px 10px;
-}
-.menu {
-  list-style: none;
-}
-.menu-item {
-  width: 100%;
-  padding: 5px;
-}
-.menu-item a {
-  display: inline-block;
-  width: 100%;
-}
-.menu-item:hover {
-  background-color: rgb(228, 228, 228);
-  cursor: pointer;
 }
 
 .form-section {
@@ -278,16 +313,18 @@ thead {
 
 .form {
   padding: 10px;
-  border: 1px solid rgb(170, 170, 170);
+  border: 1px solid #aaaaaa;
   border-radius: 5px;
   max-width: 300px;
 }
+
 .form-field {
   margin: 10px 0;
 }
+
 .text-area,
 .input {
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc;
   background: none;
   display: block;
   width: 100%;
@@ -300,7 +337,7 @@ thead {
 }
 
 .btn {
-  color: #fff;
+  color: white;
   font-size: 18px;
   font-weight: 500;
   background-color: #1976d2;
@@ -311,16 +348,19 @@ thead {
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
 }
-
 .btn:hover {
   background-color: #1abd30;
 }
 
 .footer {
   width: 100%;
-  color: rgb(223, 223, 223);
-  background-color: rgb(51, 51, 158);
+  color: white;
+  background-color: #cc6699;
   display: flex;
+  flex-direction: row;
+  justify-content: normal;
+  flex-wrap: nowrap;
+  align-items: normal;
   align-items: center;
 }
 .footer-container {
@@ -331,6 +371,8 @@ thead {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: normal;
 }
 
 @media screen and (max-width: 1024px) {
@@ -342,11 +384,11 @@ thead {
     clear: both;
   }
 }
-
 @media screen and (max-width: 419px) {
   h2 {
     text-align: center;
   }
+
   .header-container {
     gap: 5px;
   }
@@ -361,9 +403,11 @@ thead {
     width: 50px;
     height: 50px;
   }
+
   .header {
     height: 240px;
   }
+
   .main {
     padding-top: 240px;
   }
@@ -372,23 +416,27 @@ thead {
     text-align: center;
     padding: 0;
   }
+
   .content {
     width: 100%;
   }
+
   .sidebar {
     width: 100%;
     max-width: 100%;
   }
+
   .news-item {
     width: 100%;
   }
+
   .horizontal-menu ul {
     flex-direction: column;
     gap: 15px;
   }
 
   .img-right,
-  .img-left {
+.img-left {
     float: none;
     display: block;
     margin: 0 auto;
@@ -398,3 +446,5 @@ thead {
     flex-direction: column;
   }
 }
+
+/*# sourceMappingURL=style.css.map */

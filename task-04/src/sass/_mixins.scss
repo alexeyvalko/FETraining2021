@@ -1,0 +1,48 @@
+@mixin imgFloat($direction) {
+  float: $direction;
+  max-width: 220px;
+  @if $direction == right {  //п.8 @if
+    margin: 0 0px 10px 30px;
+  } @else {
+    margin: 0 30px 10px 0;
+  }
+}
+
+@mixin flex(
+  $direction: row,
+  $justifyContent: normal,
+  $wrap: nowrap,
+  $alignItems: normal
+) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justifyContent;
+  flex-wrap: $wrap;
+  align-items: $alignItems;
+}
+
+@mixin paddingMargin() {
+  padding: 20px 10px;
+  margin: 0 auto;
+}
+
+@mixin button($textColor, $bgColor, $bgHover) {
+  color: $textColor;
+  font-size: 18px;
+  font-weight: 500;
+  background-color: $bgColor;
+  min-width: 64px;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover {
+    @if lightness($bgHover) > 45 {
+      background-color: darken($bgHover, 20%)
+    } @else {
+      background-color: $bgHover
+    }
+  } 
+}

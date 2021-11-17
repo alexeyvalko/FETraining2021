@@ -1,0 +1,15 @@
+.footer {
+  width: 100%;
+  color: $textColorLight;
+  background-color: $primaryColor;
+  @include flex();
+  align-items: center;
+
+  &-container {
+    @include paddingMargin();
+    width: 100%;
+    max-width: 1440px;
+    @include flex(row, space-between);
+  }
+}
+
