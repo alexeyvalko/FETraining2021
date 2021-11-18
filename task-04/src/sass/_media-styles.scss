@@ -1,0 +1,65 @@
+@media screen and (max-width: $breakpoint-normal) {
+  .news-item {
+    width: 46%;
+  }
+
+  .form-section {
+    clear: both;
+  }
+}
+
+@media screen and (max-width: $breakpoint-small) {
+  h2 {
+    text-align: center;
+  }
+  .header-container {
+    gap: 5px;
+  }
+
+  .header-text {
+    font-size: 20px;
+    margin: 5px 0;
+    padding: 5px 0;
+  }
+
+  .logo {
+    width: 50px;
+    height: 50px;
+  }
+  .header {
+    height: 240px;
+  }
+  .main {
+    padding-top: 240px;
+  }
+
+  .menu {
+    text-align: center;
+    padding: 0;
+  }
+  .content {
+    width: 100%;
+  }
+  .sidebar {
+    width: 100%;
+    max-width: 100%;
+  }
+  .news-item {
+    width: 100%;
+  }
+  .horizontal-menu ul {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .img-right,
+  .img-left {
+    float: none;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .header-container {
+    flex-direction: column;
+  }
+}
