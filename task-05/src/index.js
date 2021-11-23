@@ -1,0 +1,6 @@
+import './styles/styles.scss';
+
+window.onload = () => {
+  const rootElement = document.querySelector('app');
+  if (!rootElement) throw new Error('Error element with id "app" not found');
+}
