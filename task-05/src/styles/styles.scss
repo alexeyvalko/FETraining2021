@@ -1,1 +1,98 @@
-$bodyBgColor: rgb(172, 172, 172);
+$bodyBgColor: #ebebeb;
+$bodyTextColor: #333;
+$calcBgColor: #22252e;
+$calcKeysContainerBgColor: #2a2c38;
+$calcKeyBgColor: #282b34;
+$calcKeyPrimeColor: #fcffff;
+$calcKeySecondColor: #c1797a;
+$calcKeyThirdColor: #37e0bf;
+$calcTextColor: #fff;
+
+$calcBorderRadius: 30px;
+$calcKeyBorderRadius: 10px;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  font-size: 18px;
+  color: $bodyTextColor;
+  text-align: center;
+  background-color: $bodyBgColor;
+  color: $calcTextColor;
+}
+
+.calculator {
+  background-color: $calcBgColor;
+  margin: 20px auto;
+  width: 350px;
+  height: 700px;
+  border-radius: $calcBorderRadius;
+  display: flex;
+  flex-direction: column;
+}
+
+.display-container {
+  overflow: hidden;
+  height: 40%;
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 40px;
+  text-align: right;
+}
+
+.display-item {
+  width: 100%;
+  font-size: 30px;
+  font-weight: 600;
+  text-align: right;
+}
+
+.display-item:nth-child(n + 2) {
+  font-size: 18px;
+  font-weight: 500;
+  color: darken($calcTextColor, 15%);
+}
+
+.keys-container {
+  height: 60%;
+  width: 100%;
+  background-color: $calcKeysContainerBgColor;
+  border-radius: $calcBorderRadius;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 10px;
+  padding: 40px 40px;
+}
+
+.key {
+  font-size: 18px;
+  height: 100%;
+  width: 100%;
+  background-color: $calcKeyBgColor;
+  border-radius: $calcKeyBorderRadius;
+  color: $calcKeyPrimeColor;
+  text-align: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.key-down {
+  transform: scale(0.9);
+}
+
+.key:nth-child(4n) {
+  color: $calcKeySecondColor;
+}
+
+.key:hover {
+  background-color: darken($calcKeyBgColor, 1%);
+}
