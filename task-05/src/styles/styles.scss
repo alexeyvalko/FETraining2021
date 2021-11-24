@@ -92,9 +92,11 @@ body {
 }
 .key:nth-child(-n+3) {
   color: $calcKeyThirdColor;
+  text-shadow: (0 0px 10px rgba(58, 236, 201, 0.2));
 }
 .key:nth-child(4n) {
   color: $calcKeySecondColor;
+  text-shadow: (0 0px 10px rgba(209, 131, 132, 0.2));
 }
 
 .key:hover {
