@@ -1,5 +1,7 @@
 import keyValues from './keyValues';
 import autoScaleText from './autoScaleText';
+import Checkbox from './Checkbox';
+import RadioElement from './RadioElement';
 
 class Calculator {
   constructor(parentElement) {
@@ -10,12 +12,24 @@ class Calculator {
     this.prevItemDisplay = document.createElement('div');
     this.currentItemDisplay = document.createElement('div');
     this.symbolElement = document.createElement('span');
+    this.optionsContainer = document.createElement('div')
+    this.integersOption = document.createElement('div')
+    this.priorityOption = document.createElement('div');
+    this.checkbox = new Checkbox();
+    this.radioElementOne = new RadioElement('integers', 'Int', false)
+    this.radioElementTwo = new RadioElement('integers', 'Dec', true)
+
     this.currentSymbol = null;
     this.prevItem = null;
     this.currentItem = null;
     this.actualFontSize = 30;
     this.allEquations = [];
-    this.isClearLine = false;
+
+    this.priorityOption.append(this.checkbox.checkbox, this.checkbox.label);
+    this.integersOption.append(this.radioElementOne.radioContainer, this.radioElementTwo.radioContainer)
+    this.priorityOption.classList.add('priority-option')
+    this.integersOption.classList.add('integers-option')
+    this.optionsContainer.classList.add('options-container')
     this.symbolElement.classList.add('symbol-element');
     this.calculator.classList.add('calculator');
     this.displayContainer.classList.add('display-container');
@@ -114,14 +128,24 @@ class Calculator {
     }
   }
 
-  showValueOnDisplay(value) {
+  scaleMainItemFontSize() {
     this.actualFontSize = autoScaleText(
       this.displayContainer.clientWidth,
       this.currentItemDisplay.clientWidth,
       this.actualFontSize,
     );
     this.currentItemDisplay.style.fontSize = `${this.actualFontSize}px`;
-    this.currentItemDisplay.textContent += value;
+  }
+
+  showValueOnDisplay(value) {
+    const isDot = value === '.'
+    this.scaleMainItemFontSize()
+    if(isDot) {
+      const isDotShown = this.currentItemDisplay.textContent.split('.').length > 1
+      this.currentItemDisplay.textContent += isDotShown ? '' : '.';
+    } else {
+      this.currentItemDisplay.textContent += value;
+    }
   }
 
   addListeners() {
@@ -136,7 +160,6 @@ class Calculator {
         e.target.classList.toggle('key-down');
       }
     };
-
     this.keysContainer.addEventListener('mousedown', mouseEventHandler);
     this.keysContainer.addEventListener('mouseup', mouseEventHandler);
   }
@@ -151,12 +174,15 @@ class Calculator {
   render() {
     this.currentItemDisplay = this.createDisplayItem('');
     this.prevItemDisplay = this.createDisplayItem('');
+    this.optionsContainer.append(this.priorityOption, this.integersOption)
     this.keysContainer.append(...this.generateKeys());
     this.displayContainer.append(this.currentItemDisplay, this.prevItemDisplay);
-    this.calculator.append(this.displayContainer, this.keysContainer);
+    this.calculator.append(this.optionsContainer, this.displayContainer, this.keysContainer);
     this.rootElement.append(this.calculator);
-
     this.addListeners();
+    this.checkbox.addListeners()
+    this.radioElementOne.addListeners()
+    this.radioElementTwo.addListeners();
   }
 }
 

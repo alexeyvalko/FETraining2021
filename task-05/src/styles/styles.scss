@@ -27,6 +27,7 @@ body {
 }
 
 .calculator {
+  position: relative;
   background-color: $calcBgColor;
   margin: 20px auto;
   width: 350px;
@@ -97,7 +98,7 @@ body {
   font-weight: 600;
   transition: all 0.3s ease;
 }
-.key:nth-child(-n+3) {
+.key:nth-child(-n + 3) {
   color: $calcKeyThirdColor;
   text-shadow: (0 0px 10px rgba(58, 236, 201, 0.5));
 }
@@ -114,6 +115,71 @@ body {
   transform: scale(0.9);
 }
 
-.symbol-element{
+.symbol-element {
   color: $calcSymbolColor;
+}
+
+.options-container {
+  width: 100%;
+  position: absolute;
+  top: 20px;
+  left: 0;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.integers-option {
+  width: 40%;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.priority-option {
+  width: 30%;
+  z-index: 1;
+}
+
+.checkbox{
+  display: none;
+}
+
+.radio-element {
+  display: none;
+}
+
+.checkbox-label {
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  border-radius: 10px;
+  width: 100%;
+  display: block;
+  padding: 5px;
+  text-align: center;
+  color: $calcTextColor;
+  background-color: $calcSymbolColor;
+}
+.radio-element:checked + .radio-label,
+.checkbox:checked + .checkbox-label   {
+  background-color: $calcKeyThirdColor;
+}
+
+.radio-container {
+  display: block;
+  width: 45%;
+}
+
+.radio-label {
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  border-radius: 10px;
+  width: 100%;
+  display: block;
+  padding: 5px;
+  text-align: center;
+  color: $calcTextColor;
+  background-color: $calcSymbolColor;
 }
