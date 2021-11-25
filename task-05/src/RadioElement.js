@@ -16,12 +16,6 @@ class RadioElement {
     this.radioContainer.classList.add('radio-container')
     this.radioContainer.append(this.radio, this.label);
   }
-
-  addListeners() {
-    this.label.onclick = () => {
-      this.radio.checked = !this.radio.checked;
-    };
-  }
 }
 
 export default RadioElement;

@@ -14,7 +14,6 @@ class Checkbox {
   addListeners() {
     this.label.onclick = () => {
       this.checkbox.checked = !this.checkbox.checked;
-      console.log(this.checkbox.checked);
     };
   }
 }

@@ -16,8 +16,9 @@ class Calculator {
     this.integersOption = document.createElement('div')
     this.priorityOption = document.createElement('div');
     this.checkbox = new Checkbox();
-    this.radioElementOne = new RadioElement('integers', 'Int', false)
-    this.radioElementTwo = new RadioElement('integers', 'Dec', true)
+    this.defaultRadioCheck = true
+    this.radioElementOne = new RadioElement('integers', 'Int', !this.defaultRadioCheck)
+    this.radioElementTwo = new RadioElement('integers', 'Dec', this.defaultRadioCheck)
 
     this.currentSymbol = null;
     this.prevItem = null;
@@ -160,6 +161,16 @@ class Calculator {
         e.target.classList.toggle('key-down');
       }
     };
+
+    const integersOptionHandler = (e) => {
+      if(e.target.matches('label')) {
+        this.defaultRadioCheck = !this.defaultRadioCheck
+        this.radioElementOne.radio.checked = !this.defaultRadioCheck
+        this.radioElementTwo.radio.checked = this.defaultRadioCheck
+      };
+    }
+
+    this.integersOption.addEventListener('click', integersOptionHandler)
     this.keysContainer.addEventListener('mousedown', mouseEventHandler);
     this.keysContainer.addEventListener('mouseup', mouseEventHandler);
   }
@@ -181,8 +192,6 @@ class Calculator {
     this.rootElement.append(this.calculator);
     this.addListeners();
     this.checkbox.addListeners()
-    this.radioElementOne.addListeners()
-    this.radioElementTwo.addListeners();
   }
 }
 
