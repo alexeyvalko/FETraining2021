@@ -12,13 +12,21 @@ class Calculator {
     this.prevItemDisplay = document.createElement('div');
     this.currentItemDisplay = document.createElement('div');
     this.symbolElement = document.createElement('span');
-    this.optionsContainer = document.createElement('div')
-    this.integersOption = document.createElement('div')
+    this.optionsContainer = document.createElement('div');
+    this.integersOption = document.createElement('div');
     this.priorityOption = document.createElement('div');
     this.checkbox = new Checkbox();
-    this.defaultRadioCheck = true
-    this.radioElementOne = new RadioElement('integers', 'Int', !this.defaultRadioCheck)
-    this.radioElementTwo = new RadioElement('integers', 'Dec', this.defaultRadioCheck)
+    this.defaultRadioCheck = true;
+    this.radioElementInt = new RadioElement(
+      'integers',
+      'Int',
+      !this.defaultRadioCheck,
+    );
+    this.radioElementDec = new RadioElement(
+      'integers',
+      'Dec',
+      this.defaultRadioCheck,
+    );
 
     this.currentSymbol = null;
     this.prevItem = null;
@@ -27,10 +35,13 @@ class Calculator {
     this.allEquations = [];
 
     this.priorityOption.append(this.checkbox.checkbox, this.checkbox.label);
-    this.integersOption.append(this.radioElementOne.radioContainer, this.radioElementTwo.radioContainer)
-    this.priorityOption.classList.add('priority-option')
-    this.integersOption.classList.add('integers-option')
-    this.optionsContainer.classList.add('options-container')
+    this.integersOption.append(
+      this.radioElementInt.radioContainer,
+      this.radioElementDec.radioContainer,
+    );
+    this.priorityOption.classList.add('priority-option');
+    this.integersOption.classList.add('integers-option');
+    this.optionsContainer.classList.add('options-container');
     this.symbolElement.classList.add('symbol-element');
     this.calculator.classList.add('calculator');
     this.displayContainer.classList.add('display-container');
@@ -73,10 +84,13 @@ class Calculator {
           result = this.prevItem * currentNumber;
           break;
         default:
-          result = currentNumber;
+          result = this.radioElementInt.radio.checked
+            ? Math.round(currentNumber)
+            : currentNumber;
       }
     }
-    return result;
+
+    return this.radioElementInt.radio.checked ? Math.round(result) : result;
   }
 
   doSomeAction(value) {
@@ -139,11 +153,13 @@ class Calculator {
   }
 
   showValueOnDisplay(value) {
-    const isDot = value === '.'
-    this.scaleMainItemFontSize()
-    if(isDot) {
-      const isDotShown = this.currentItemDisplay.textContent.split('.').length > 1
-      this.currentItemDisplay.textContent += isDotShown ? '' : '.';
+    const isDot = value === '.';
+    this.scaleMainItemFontSize();
+    if (isDot) {
+      const isDotShown =
+        this.currentItemDisplay.textContent.split('.').length > 1;
+      this.currentItemDisplay.textContent +=
+        isDotShown || this.radioElementInt.radio.checked ? '' : '.';
     } else {
       this.currentItemDisplay.textContent += value;
     }
@@ -163,14 +179,14 @@ class Calculator {
     };
 
     const integersOptionHandler = (e) => {
-      if(e.target.matches('label')) {
-        this.defaultRadioCheck = !this.defaultRadioCheck
-        this.radioElementOne.radio.checked = !this.defaultRadioCheck
-        this.radioElementTwo.radio.checked = this.defaultRadioCheck
-      };
-    }
+      if (e.target.matches('label')) {
+        this.defaultRadioCheck = !this.defaultRadioCheck;
+        this.radioElementInt.radio.checked = !this.defaultRadioCheck;
+        this.radioElementDec.radio.checked = this.defaultRadioCheck;
+      }
+    };
 
-    this.integersOption.addEventListener('click', integersOptionHandler)
+    this.integersOption.addEventListener('click', integersOptionHandler);
     this.keysContainer.addEventListener('mousedown', mouseEventHandler);
     this.keysContainer.addEventListener('mouseup', mouseEventHandler);
   }
@@ -185,13 +201,17 @@ class Calculator {
   render() {
     this.currentItemDisplay = this.createDisplayItem('');
     this.prevItemDisplay = this.createDisplayItem('');
-    this.optionsContainer.append(this.priorityOption, this.integersOption)
+    this.optionsContainer.append(this.priorityOption, this.integersOption);
     this.keysContainer.append(...this.generateKeys());
     this.displayContainer.append(this.currentItemDisplay, this.prevItemDisplay);
-    this.calculator.append(this.optionsContainer, this.displayContainer, this.keysContainer);
+    this.calculator.append(
+      this.optionsContainer,
+      this.displayContainer,
+      this.keysContainer,
+    );
     this.rootElement.append(this.calculator);
     this.addListeners();
-    this.checkbox.addListeners()
+    this.checkbox.addListeners();
   }
 }
 
