@@ -7,12 +7,16 @@ class Calculator {
     this.calculator = document.createElement('div');
     this.displayContainer = document.createElement('div');
     this.keysContainer = document.createElement('div');
-    this.actualEquation = document.createElement('div');
-    this.currentItem = document.createElement('div');
-
+    this.prevItemDisplay = document.createElement('div');
+    this.currentItemDisplay = document.createElement('div');
+    this.symbolElement = document.createElement('span');
+    this.currentSymbol = null;
+    this.prevItem = null;
+    this.currentItem = null;
     this.actualFontSize = 30;
     this.allEquations = [];
     this.isClearLine = false;
+    this.symbolElement.classList.add('symbol-element');
     this.calculator.classList.add('calculator');
     this.displayContainer.classList.add('display-container');
     this.keysContainer.classList.add('keys-container');
@@ -28,36 +32,96 @@ class Calculator {
     return keys;
   }
 
-  clearDisplay() {
-    this.actualEquation.textContent = '';
-    this.currentItem.textContent = '';
+  clear() {
+    this.prevItemDisplay.textContent = '';
+    this.currentItemDisplay.textContent = '';
+    this.currentItem = null;
     this.actualFontSize = 30;
+    this.currentSymbol = '';
+    this.prevItem = null;
   }
 
-  checkSymbol(symbol) {
-    const isSymbol = /^[+\-✕÷]$/.test(symbol);
-    const isC = symbol === 'C';
-    const isPlusMinus = symbol === '±';
-    if (isPlusMinus) {
-      return this.currentItem.textContent[0] === '-'
-        ? this.currentItem.textContent.slice(1)
-        : `-${this.currentItem.textContent}`;
+  calc(currentNumber) {
+    let result = currentNumber;
+    if (this.prevItem !== null) {
+      switch (this.currentSymbol) {
+        case '+':
+          result = this.prevItem + currentNumber;
+          break;
+        case '-':
+          result = this.prevItem - currentNumber;
+          break;
+        case '÷':
+          result = this.prevItem / currentNumber;
+          break;
+        case '✕':
+          result = this.prevItem * currentNumber;
+          break;
+        default:
+          result = currentNumber;
+      }
     }
-    if (isC) {
-      this.clearDisplay();
-      return '';
-    }
-    if (isSymbol) {
-      this.isClearLine = true;
-      this.actualEquation.textContent += this.currentItem.textContent + symbol;
-      return this.currentItem.textContent;
-    }
-    if (this.isClearLine) {
-      this.isClearLine = false;
-      return symbol;
+    return result;
+  }
+
+  doSomeAction(value) {
+    const isSymbol = /^[+\-✕÷]$/.test(value);
+    const isC = value === 'C';
+    const isPlusMinus = value === '±';
+    const isNumberOrDot = !/^[+\-✕÷C=±]$/.test(value);
+    const isEquals = value === '=';
+
+    if (isNumberOrDot) {
+      this.showValueOnDisplay(value);
     }
 
-    return this.currentItem.textContent + symbol;
+    if (isSymbol && this.currentItemDisplay.textContent !== '') {
+      this.currentItem = parseFloat(this.currentItemDisplay.textContent, 10);
+      this.prevItem = this.calc(this.currentItem);
+      this.currentSymbol = value;
+      this.prevItemDisplay.textContent = `${this.prevItem}`;
+      this.prevItemDisplay.insertAdjacentElement(
+        'beforeend',
+        this.symbolElement,
+      );
+      this.symbolElement.textContent = ` ${this.currentSymbol}`;
+      this.actualFontSize = 30;
+      this.currentItemDisplay.textContent = '';
+    }
+
+    if (isEquals) {
+      const showValue =
+        this.currentItemDisplay.textContent !== ''
+          ? this.calc(parseFloat(this.currentItemDisplay.textContent, 10))
+          : this.prevItem;
+      this.currentItem = showValue;
+      this.currentItemDisplay.textContent = this.currentItem;
+      this.prevItemDisplay.textContent = '';
+      this.symbolElement.textContent = '';
+      this.prevItem = null;
+      this.currentSymbol = '';
+    }
+
+    if (isPlusMinus) {
+      this.currentItemDisplay.textContent =
+        this.currentItemDisplay.textContent[0] === '-'
+          ? this.currentItemDisplay.textContent.slice(1)
+          : `-${this.currentItemDisplay.textContent}`;
+    }
+
+    if (isC) {
+      this.clear();
+    }
+  }
+
+  showValueOnDisplay(value) {
+    this.actualFontSize = autoScaleText(
+      this.displayContainer.clientWidth,
+      this.currentItemDisplay.clientWidth,
+      this.actualFontSize,
+    );
+    this.currentItemDisplay.style.fontSize = `${this.actualFontSize}px`;
+    this.currentItemDisplay.textContent += value;
   }
 
   addListeners() {
@@ -66,13 +130,7 @@ class Calculator {
       const isKeyDown = e.target.matches('.key-down');
       const targetValue = e.target.textContent;
       if (isKeyDown) {
-        this.actualFontSize = autoScaleText(
-          this.displayContainer.clientWidth,
-          this.currentItem.clientWidth,
-          this.actualFontSize,
-        );
-        this.currentItem.style.fontSize = `${this.actualFontSize}px`;
-        this.currentItem.textContent = this.checkSymbol(targetValue);
+        this.doSomeAction(targetValue);
       }
       if (isKey) {
         e.target.classList.toggle('key-down');
@@ -91,10 +149,10 @@ class Calculator {
   }
 
   render() {
-    this.currentItem = this.createDisplayItem('');
-    this.actualEquation = this.createDisplayItem('');
+    this.currentItemDisplay = this.createDisplayItem('');
+    this.prevItemDisplay = this.createDisplayItem('');
     this.keysContainer.append(...this.generateKeys());
-    this.displayContainer.append(this.currentItem, this.actualEquation);
+    this.displayContainer.append(this.currentItemDisplay, this.prevItemDisplay);
     this.calculator.append(this.displayContainer, this.keysContainer);
     this.rootElement.append(this.calculator);
 

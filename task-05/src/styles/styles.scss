@@ -4,7 +4,7 @@ $calcBgColor: #22252e;
 $calcKeysContainerBgColor: #2a2c38;
 $calcKeyBgColor: #282b34;
 $calcKeyPrimeColor: #fcffff;
-$calcKeySecondColor: #c1797a;
+$calcSymbolColor: #c1797a;
 $calcKeyThirdColor: #37e0bf;
 $calcTextColor: #fff;
 
@@ -37,6 +37,7 @@ body {
 }
 
 .display-container {
+  position: relative;
   overflow: hidden;
   height: 40%;
   width: 100%;
@@ -56,12 +57,17 @@ body {
   overflow: hidden;
   max-width: 100%;
   transform-origin: right;
+  margin-top: 10px;
 }
 
 .display-item:nth-child(n + 2) {
+  margin-top: 0;
   font-size: 18px;
   font-weight: 500;
   color: darken($calcTextColor, 15%);
+  position: absolute;
+  bottom: 80px;
+  right: 40px;
 }
 
 .keys-container {
@@ -83,6 +89,7 @@ body {
   background-color: $calcKeyBgColor;
   border-radius: $calcKeyBorderRadius;
   color: $calcKeyPrimeColor;
+  text-shadow: (0 0px 10px rgba(252, 255, 255, 0.2));
   text-align: center;
   border: none;
   outline: none;
@@ -92,11 +99,11 @@ body {
 }
 .key:nth-child(-n+3) {
   color: $calcKeyThirdColor;
-  text-shadow: (0 0px 10px rgba(58, 236, 201, 0.2));
+  text-shadow: (0 0px 10px rgba(58, 236, 201, 0.5));
 }
 .key:nth-child(4n) {
-  color: $calcKeySecondColor;
-  text-shadow: (0 0px 10px rgba(209, 131, 132, 0.2));
+  color: $calcSymbolColor;
+  text-shadow: (0 0px 10px rgba(175, 85, 86, 0.5));
 }
 
 .key:hover {
@@ -105,4 +112,8 @@ body {
 
 .key-down {
   transform: scale(0.9);
+}
+
+.symbol-element{
+  color: $calcSymbolColor;
 }
