@@ -11,7 +11,6 @@ class Calculator {
     this.keysContainer = document.createElement('div');
     this.prevItemDisplay = document.createElement('div');
     this.currentItemDisplay = document.createElement('div');
-    this.symbolElement = document.createElement('span');
     this.optionsContainer = document.createElement('div');
     this.integersOption = document.createElement('div');
     this.priorityOption = document.createElement('div');
@@ -35,7 +34,6 @@ class Calculator {
     this.priorityOption.classList.add('priority-option');
     this.integersOption.classList.add('integers-option');
     this.optionsContainer.classList.add('options-container');
-    this.symbolElement.classList.add('symbol-element');
     this.calculator.classList.add('calculator');
     this.displayContainer.classList.add('display-container');
     this.keysContainer.classList.add('keys-container');
@@ -106,9 +104,7 @@ class Calculator {
     this.currentNumber = lastNumber;
     this.prevNumber = this.calc(this.currentNumber);
     this.currentSymbol = operand;
-    this.prevItemDisplay.textContent = `${this.prevNumber}`;
-    this.prevItemDisplay.insertAdjacentElement('beforeend', this.symbolElement);
-    this.symbolElement.textContent = ` ${this.currentSymbol}`;
+    this.showCalcHistory(this.currentSymbol, this.currentNumber);
     this.actualFontSize = 32;
     this.currentItemDisplay.textContent = '';
   }
@@ -121,21 +117,35 @@ class Calculator {
     this.currentNumber = showValue;
     this.currentItemDisplay.textContent = this.currentNumber;
     this.prevItemDisplay.textContent = '';
-    this.symbolElement.textContent = '';
     this.prevNumber = null;
     this.currentSymbol = '';
   }
 
-  calcWithPriority(operand, lastNumber) {
+  showCalcHistory(operand, lastNumber) {
+    const lastOperationElement = document.createElement('span');
+    const lasOperandElement = document.createElement('span');
+    lasOperandElement.classList.add('symbol-element');
+    lastOperationElement.textContent = ` ${lastNumber}`;
+    lasOperandElement.textContent = ` ${operand}`;
+    lastOperationElement.insertAdjacentElement('beforeend', lasOperandElement);
+    this.prevItemDisplay.appendChild(lastOperationElement)
+  }
+
+
+  calcWithPriority(operand, lastNumber, recCall = false) {
     const lastOperand = operand;
     const operandsStackLength = this.operandsStack.length;
     const lastOperandInStack = this.operandsStack[operandsStackLength - 1];
     const isHigherPriority =
       this.priorityRanks[lastOperand] > this.priorityRanks[lastOperandInStack];
-    console.log(this.numbersStack);
-    console.log(this.operandsStack);
-    console.log(isHigherPriority);
     this.numbersStack.push(lastNumber);
+    if (!recCall) {
+      this.showCalcHistory(lastOperand, lastNumber)
+    }
+    if (recCall) {
+      this.prevItemDisplay.textContent = '';
+      this.showCalcHistory(lastOperand, lastNumber)
+    }
     this.currentItemDisplay.textContent = '';
     if (operandsStackLength === 0 || isHigherPriority) {
       this.operandsStack.push(operand);
@@ -146,7 +156,7 @@ class Calculator {
       this.currentNumber = this.numbersStack.pop();
       this.prevNumber = this.numbersStack.pop();
       const resultNumber = this.calc();
-      this.calcWithPriority(lastOperand, resultNumber);
+      this.calcWithPriority(lastOperand, resultNumber, true);
     }
   }
 
@@ -167,6 +177,7 @@ class Calculator {
       this.getResultWithPriority();
     }
     if (numbersStuckLength === 1) {
+      this.prevItemDisplay.textContent = '';
       this.currentItemDisplay.textContent = this.numbersStack.pop();
     }
   }
