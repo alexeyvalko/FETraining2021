@@ -1,5 +1,5 @@
 import './styles/styles.scss';
-import Calculator from './Calculator'
+import Calculator from './components/Calculator/Calculator'
 
 window.onload = () => {
   const rootElement = document.querySelector('#app');

@@ -9,6 +9,9 @@ class Checkbox {
     this.label.classList.add('checkbox-label');
     this.label.for = 'check';
     this.label.textContent = 'P';
+
+    this.checkboxContainer = document.createElement('div');
+    this.checkboxContainer.append(this.checkbox, this.label)
   }
 
   addListeners() {

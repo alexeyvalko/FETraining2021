@@ -1,7 +1,7 @@
 import keyValues from './keyValues';
-import autoScaleText from './autoScaleText';
-import Checkbox from './Checkbox';
-import RadioElement from './RadioElement';
+import autoScaleText from '../autoScaleText';
+import Checkbox from '../Checkbox';
+import RadioElement from '../RadioElement';
 
 class Calculator {
   constructor(parentElement) {
@@ -31,10 +31,10 @@ class Calculator {
     this.currentSymbol = null;
     this.prevItem = null;
     this.currentItem = null;
-    this.actualFontSize = 30;
+    this.actualFontSize = 32;
     this.allEquations = [];
 
-    this.priorityOption.append(this.checkbox.checkbox, this.checkbox.label);
+    this.priorityOption.append(this.checkbox.checkboxContainer);
     this.integersOption.append(
       this.radioElementInt.radioContainer,
       this.radioElementDec.radioContainer,
@@ -62,7 +62,7 @@ class Calculator {
     this.prevItemDisplay.textContent = '';
     this.currentItemDisplay.textContent = '';
     this.currentItem = null;
-    this.actualFontSize = 30;
+    this.actualFontSize = 32;
     this.currentSymbol = '';
     this.prevItem = null;
   }

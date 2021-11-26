@@ -51,7 +51,7 @@ body {
 }
 
 .display-item {
-  font-size: 30px;
+  font-size: 32px;
   font-weight: 600;
   text-align: right;
   text-overflow: ellipsis;
@@ -137,7 +137,7 @@ body {
 }
 
 .priority-option {
-  width: 30%;
+  width: 20%;
   z-index: 1;
 }
 
@@ -158,12 +158,13 @@ body {
   display: block;
   padding: 5px;
   text-align: center;
-  color: $calcTextColor;
-  background-color: $calcSymbolColor;
+  color: $calcSymbolColor;
+  background-color: $calcKeysContainerBgColor;
+  transition: all 0.3s ease;
 }
 .radio-element:checked + .radio-label,
 .checkbox:checked + .checkbox-label   {
-  background-color: $calcKeyThirdColor;
+  color: $calcKeyThirdColor;
 }
 
 .radio-container {
@@ -180,6 +181,7 @@ body {
   display: block;
   padding: 5px;
   text-align: center;
-  color: $calcTextColor;
-  background-color: $calcSymbolColor;
+  color: $calcSymbolColor;
+  transition: all 0.3s ease;
+  background-color: $calcKeysContainerBgColor;
 }
