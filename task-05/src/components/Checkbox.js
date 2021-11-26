@@ -13,12 +13,6 @@ class Checkbox {
     this.checkboxContainer = document.createElement('div');
     this.checkboxContainer.append(this.checkbox, this.label)
   }
-
-  addListeners() {
-    this.label.onclick = () => {
-      this.checkbox.checked = !this.checkbox.checked;
-    };
-  }
 }
 
 export default Checkbox;

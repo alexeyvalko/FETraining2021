@@ -42,12 +42,8 @@ class Calculator {
     this.prevNumber = null;
     this.currentNumber = null;
     this.actualFontSize = 32;
-    this.allEquations = [];
-    this.currentEquation = [];
-
     this.numbersStack = [];
     this.operandsStack = [];
-
     this.priorityRanks = {
       '+': 1,
       '-': 1,
@@ -73,7 +69,8 @@ class Calculator {
     this.actualFontSize = 32;
     this.currentSymbol = '';
     this.prevNumber = null;
-    this.currentEquation = [];
+    this.numbersStack = []
+    this.operandsStack = [];
   }
 
   calc(currentNumber = this.currentNumber) {
@@ -264,6 +261,12 @@ class Calculator {
       }
     };
 
+    const priorityCheckboxHandler = () => {
+      this.checkboxElement.checkbox.checked = !this.checkboxElement.checkbox.checked;
+      this.clear();
+    }
+
+    this.checkboxElement.label.addEventListener('click', priorityCheckboxHandler)
     this.integersOption.addEventListener('click', integersOptionHandler);
     this.keysContainer.addEventListener('mousedown', mouseEventHandler);
     this.keysContainer.addEventListener('mouseup', mouseEventHandler);
@@ -289,7 +292,6 @@ class Calculator {
     );
     this.rootElement.append(this.calculator);
     this.addListeners();
-    this.checkboxElement.addListeners();
   }
 }
 
