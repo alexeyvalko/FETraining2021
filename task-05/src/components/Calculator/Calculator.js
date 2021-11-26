@@ -15,7 +15,7 @@ class Calculator {
     this.optionsContainer = document.createElement('div');
     this.integersOption = document.createElement('div');
     this.priorityOption = document.createElement('div');
-    this.checkbox = new Checkbox();
+    this.checkboxElement = new Checkbox();
     this.defaultRadioCheck = true;
     this.radioElementInt = new RadioElement(
       'integers',
@@ -27,14 +27,7 @@ class Calculator {
       'Dec',
       this.defaultRadioCheck,
     );
-
-    this.currentSymbol = null;
-    this.prevItem = null;
-    this.currentItem = null;
-    this.actualFontSize = 32;
-    this.allEquations = [];
-
-    this.priorityOption.append(this.checkbox.checkboxContainer);
+    this.priorityOption.append(this.checkboxElement.checkboxContainer);
     this.integersOption.append(
       this.radioElementInt.radioContainer,
       this.radioElementDec.radioContainer,
@@ -46,6 +39,23 @@ class Calculator {
     this.calculator.classList.add('calculator');
     this.displayContainer.classList.add('display-container');
     this.keysContainer.classList.add('keys-container');
+
+    this.currentSymbol = null;
+    this.prevNumber = null;
+    this.currentNumber = null;
+    this.actualFontSize = 32;
+    this.allEquations = [];
+    this.currentEquation = [];
+
+    this.numbersStack = [];
+    this.operandsStack = [];
+
+    this.priorityRanks = {
+      '+': 1,
+      '-': 1,
+      '✕': 2,
+      '÷': 2,
+    };
   }
 
   generateKeys() {
@@ -61,36 +71,104 @@ class Calculator {
   clear() {
     this.prevItemDisplay.textContent = '';
     this.currentItemDisplay.textContent = '';
-    this.currentItem = null;
+    this.currentNumber = null;
     this.actualFontSize = 32;
     this.currentSymbol = '';
-    this.prevItem = null;
+    this.prevNumber = null;
+    this.currentEquation = [];
   }
 
-  calc(currentNumber) {
+  calc(currentNumber = this.currentNumber) {
     let result = currentNumber;
-    if (this.prevItem !== null) {
+    if (this.prevNumber !== null) {
       switch (this.currentSymbol) {
         case '+':
-          result = this.prevItem + currentNumber;
+          result = this.prevNumber + currentNumber;
           break;
         case '-':
-          result = this.prevItem - currentNumber;
+          result = this.prevNumber - currentNumber;
           break;
         case '÷':
-          result = this.prevItem / currentNumber;
+          result = this.prevNumber / currentNumber;
           break;
         case '✕':
-          result = this.prevItem * currentNumber;
+          result = this.prevNumber * currentNumber;
           break;
         default:
-          result = this.radioElementInt.radio.checked
-            ? Math.round(currentNumber)
-            : currentNumber;
+          result = currentNumber;
       }
     }
 
     return this.radioElementInt.radio.checked ? Math.round(result) : result;
+  }
+
+  calcWithoutPriority(operand, lastNumber) {
+    this.currentNumber = lastNumber;
+    this.prevNumber = this.calc(this.currentNumber);
+    this.currentSymbol = operand;
+    this.prevItemDisplay.textContent = `${this.prevNumber}`;
+    this.prevItemDisplay.insertAdjacentElement('beforeend', this.symbolElement);
+    this.symbolElement.textContent = ` ${this.currentSymbol}`;
+    this.actualFontSize = 32;
+    this.currentItemDisplay.textContent = '';
+  }
+
+  getResultWithoutPriority() {
+    const showValue =
+      this.currentItemDisplay.textContent !== ''
+        ? this.calc(parseFloat(this.currentItemDisplay.textContent, 10))
+        : this.prevNumber;
+    this.currentNumber = showValue;
+    this.currentItemDisplay.textContent = this.currentNumber;
+    this.prevItemDisplay.textContent = '';
+    this.symbolElement.textContent = '';
+    this.prevNumber = null;
+    this.currentSymbol = '';
+  }
+
+  calcWithPriority(operand, lastNumber) {
+    const lastOperand = operand;
+    const operandsStackLength = this.operandsStack.length;
+    const lastOperandInStack = this.operandsStack[operandsStackLength - 1];
+    const isHigherPriority =
+      this.priorityRanks[lastOperand] > this.priorityRanks[lastOperandInStack];
+    console.log(this.numbersStack);
+    console.log(this.operandsStack);
+    console.log(isHigherPriority);
+    this.numbersStack.push(lastNumber);
+    this.currentItemDisplay.textContent = '';
+    if (operandsStackLength === 0 || isHigherPriority) {
+      this.operandsStack.push(operand);
+    }
+
+    if (operandsStackLength > 0 && !isHigherPriority) {
+      this.currentSymbol = this.operandsStack.pop();
+      this.currentNumber = this.numbersStack.pop();
+      this.prevNumber = this.numbersStack.pop();
+      const resultNumber = this.calc();
+      this.calcWithPriority(lastOperand, resultNumber);
+    }
+  }
+
+  getResultWithPriority() {
+    if (this.currentItemDisplay.textContent !== '') {
+      const lastNumber = parseFloat(this.currentItemDisplay.textContent, 10);
+      this.numbersStack.push(lastNumber);
+      this.currentItemDisplay.textContent = '';
+    }
+
+    const numbersStuckLength = this.numbersStack.length;
+    if (numbersStuckLength > 1) {
+      this.currentNumber = this.numbersStack.pop();
+      this.prevNumber = this.numbersStack.pop();
+      this.currentSymbol = this.operandsStack.pop();
+      const lastNumber = this.calc();
+      this.numbersStack.push(lastNumber);
+      this.getResultWithPriority();
+    }
+    if (numbersStuckLength === 1) {
+      this.currentItemDisplay.textContent = this.numbersStack.pop();
+    }
   }
 
   doSomeAction(value) {
@@ -99,36 +177,25 @@ class Calculator {
     const isPlusMinus = value === '±';
     const isNumberOrDot = !/^[+\-✕÷C=±]$/.test(value);
     const isEquals = value === '=';
-
+    const lastNumber = parseFloat(this.currentItemDisplay.textContent, 10);
     if (isNumberOrDot) {
       this.showValueOnDisplay(value);
     }
 
     if (isSymbol && this.currentItemDisplay.textContent !== '') {
-      this.currentItem = parseFloat(this.currentItemDisplay.textContent, 10);
-      this.prevItem = this.calc(this.currentItem);
-      this.currentSymbol = value;
-      this.prevItemDisplay.textContent = `${this.prevItem}`;
-      this.prevItemDisplay.insertAdjacentElement(
-        'beforeend',
-        this.symbolElement,
-      );
-      this.symbolElement.textContent = ` ${this.currentSymbol}`;
-      this.actualFontSize = 30;
-      this.currentItemDisplay.textContent = '';
+      if (this.checkboxElement.checkbox.checked) {
+        this.calcWithPriority(value, lastNumber);
+      } else {
+        this.calcWithoutPriority(value, lastNumber);
+      }
     }
 
     if (isEquals) {
-      const showValue =
-        this.currentItemDisplay.textContent !== ''
-          ? this.calc(parseFloat(this.currentItemDisplay.textContent, 10))
-          : this.prevItem;
-      this.currentItem = showValue;
-      this.currentItemDisplay.textContent = this.currentItem;
-      this.prevItemDisplay.textContent = '';
-      this.symbolElement.textContent = '';
-      this.prevItem = null;
-      this.currentSymbol = '';
+      if (this.checkboxElement.checkbox.checked) {
+        this.getResultWithPriority();
+      } else {
+        this.getResultWithoutPriority();
+      }
     }
 
     if (isPlusMinus) {
@@ -211,7 +278,7 @@ class Calculator {
     );
     this.rootElement.append(this.calculator);
     this.addListeners();
-    this.checkbox.addListeners();
+    this.checkboxElement.addListeners();
   }
 }
 
