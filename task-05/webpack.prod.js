@@ -1,4 +1,3 @@
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
@@ -31,6 +30,5 @@ module.exports = merge(common,{
       filename: '[name].[contenthash].css',
       chunkFilename: '[id].[hash].css'
     }),
-    new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
   ],
 });

@@ -3,7 +3,7 @@
     "browser": true
   },
   "extends": [
-    "airbnb",
+    "airbnb-base",
     "eslint:recommended",
     "prettier"
   ],
