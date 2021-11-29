@@ -94,6 +94,8 @@ body {
   overflow-y: scroll;
   width: 100%;
   padding-right: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: lighten($calcBgColor, 10%) $calcBgColor;
 }
 
 .display-container {
