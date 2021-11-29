@@ -161,7 +161,6 @@ class Calculator {
   }
 
   getResultWithPriority() {
-    console.log(this.numbersStack);
     const numbersStuckLength = this.numbersStack.length;
 
     if (this.currentItemDisplay.textContent !== '') {
@@ -239,7 +238,7 @@ class Calculator {
       el.textContent = item;
       return el;
     });
-    this.historyWindowInnerContainer.append(...history);
+    this.historyWindowInnerContainer.append(...history.reverse());
     if(this.historyWindowInnerContainer.clientHeight >= 320) {
       this.historyWindowInnerContainer.classList.add('scroll-y')
     }
@@ -327,7 +326,7 @@ class Calculator {
     this.keysContainer.classList.add('keys-container');
     this.historyContainer.classList.add('history-container');
     this.historyWindow.classList.add('history-window');
-
+    this.historyWindowInnerContainer.classList.add('history-inner')
     this.historyContainer.append(this.button.element);
 
     this.currentItemDisplay = this.createDisplayItem('');

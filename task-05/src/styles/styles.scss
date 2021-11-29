@@ -15,7 +15,6 @@ body {
   color: $calcTextColor;
 }
 
-
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
@@ -24,7 +23,7 @@ body {
 /* Track */
 ::-webkit-scrollbar-track {
   border-radius: 10px;
-  background: $calcBgColor
+  background: $calcBgColor;
 }
 
 /* Handle */
@@ -33,7 +32,7 @@ body {
   border-radius: 10px;
 }
 
-.app{
+.app {
   padding: 20px 0;
   display: flex;
   justify-content: center;
@@ -59,25 +58,39 @@ body {
   min-width: 300px;
 }
 
-.history-window{
+.history-window {
   min-width: 300px;
   min-height: 200px;
   max-width: 300px;
   max-height: 400px;
-  text-align: left;
-  overflow: hidden; 
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  align-items: flex-start;
+  overflow: hidden;
   background-color: $calcKeysContainerBgColor;
-  background: linear-gradient(157deg, $calcKeysContainerBgColor 70%, lighten($calcKeysContainerBgColor, 5%) 100%);
+  background: linear-gradient(
+    157deg,
+    $calcKeysContainerBgColor 70%,
+    lighten($calcKeysContainerBgColor, 5%) 100%
+  );
   padding: 40px;
   border-radius: $calcBorderRadius;
   filter: drop-shadow(0 2px 8px lighten($calcKeyBgColor, 10%));
 }
 
-.scroll-y{
+.history-inner {
+  max-height: 320px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.history-inner > div:first-child {
+  width: 100%;
+  padding-bottom: 5px;
+  border-bottom: 2px solid darken($calcKeyThirdColor, 5%);
+}
+
+.scroll-y {
   overflow-y: scroll;
   width: 100%;
   padding-right: 10px;
@@ -188,7 +201,7 @@ body {
   z-index: 1;
 }
 
-.checkbox{
+.checkbox {
   display: none;
 }
 
@@ -210,7 +223,7 @@ body {
   transition: all 0.3s ease;
 }
 .radio-element:checked + .radio-label,
-.checkbox:checked + .checkbox-label   {
+.checkbox:checked + .checkbox-label {
   color: $calcKeyThirdColor;
 }
 
@@ -233,4 +246,4 @@ body {
   background-color: $calcKeysContainerBgColor;
 }
 
-@import './button'
+@import './button';
