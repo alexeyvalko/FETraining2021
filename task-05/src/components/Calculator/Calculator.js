@@ -24,7 +24,7 @@ class Calculator {
       !this.defaultRadioCheck,
     );
     this.radioElementDec = new RadioElement(
-      'Decimals', // радиоэлемент для включения режима работы вещественными числами
+      'Decimals', // радиоэлемент для включения режима работы c вещественными числами
       'Dec',
       this.defaultRadioCheck,
     );
@@ -75,8 +75,8 @@ class Calculator {
     this.operandsStack = [];
   }
 
+  // функция которая выполняет все вычесления
   calc(currentNumber = this.currentNumber) {
-    // функция которая выполняет все вычесления
     let result = currentNumber;
     if (this.prevNumber !== null) {
       switch (this.currentSymbol) {
@@ -101,7 +101,7 @@ class Calculator {
       );
       this.showHistory();
     }
-
+    // если  радиоэлемент Int отмечен то округляем до целого числа
     return this.radioElementInt.radio.checked ? Math.round(result) : result;
   }
 
@@ -210,6 +210,7 @@ class Calculator {
     // если символ операции то выполяем операцию
     if (isSymbol && this.currentItemDisplay.textContent !== '') {
       if (this.checkboxElement.checkbox.checked) {
+        // если чекбокс отмечен то вычислем с проритетом
         this.calcWithPriority(value, lastNumber);
       } else {
         this.calcWithoutPriority(value, lastNumber);
