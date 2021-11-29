@@ -18,7 +18,7 @@ class Calculator {
     this.priorityOption = document.createElement('div');
     this.checkboxElement = new Checkbox(); // чекбокс для вычеслений с приоритетом операций
     this.defaultRadioCheck = true; // значение по умолчанию для радиокнопок
-    this.radioElementInt = new RadioElement( // радиоэлемент для включения режима работы целыми числами
+    this.radioElementInt = new RadioElement( // радиоэлемент для включения режима работы c целыми числами
       'integers',
       'Int',
       !this.defaultRadioCheck,
@@ -41,20 +41,20 @@ class Calculator {
     this.currentNumber = null;
 
     this.numbersStack = []; // стэк чисел используется для вычеслений с приоритетом
-    this.operandsStack = []; // стэк символов операциё используется для вычеслений с приоритетом
+    this.operandsStack = []; // стэк символов операций используется для вычеслений с приоритетом
+    // приоритеты символов
     this.priorityRanks = {
-      // приоритеты символов
       '+': 1,
       '-': 1,
       '✕': 2,
       '÷': 2,
     };
 
-    this.operationHistory = []; // здесь хранится история операций
+    this.operationHistory = []; // здесь хранится история всех операций
   }
 
+  // генерация клавиш клавиатуры калькулятора
   generateKeys() {
-    // генерация клавиш клавиатуры калькулятора
     const keys = keyValues.map((item) => {
       const key = document.createElement('button');
       key.classList.add('key');
@@ -248,7 +248,7 @@ class Calculator {
     this.currentItemDisplay.style.fontSize = `${this.actualFontSize}px`;
   }
 
-  // всю историю операций в отдельном окне
+  // отображаем всю историю операций в отдельном окне
   showHistory() {
     this.historyWindowInnerContainer.innerHTML = '';
     const history = this.operationHistory.map((item) => {
