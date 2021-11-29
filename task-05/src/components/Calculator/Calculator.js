@@ -7,41 +7,43 @@ import Button from '../Button/Button';
 class Calculator {
   constructor(parentElement) {
     this.rootElement = parentElement;
-    this.button = new Button('Show history');
-    this.historyContainer = document.createElement('div');
-    this.historyWindow = document.createElement('div');
-    this.historyWindowInnerContainer = document.createElement('div');
 
     this.calculator = document.createElement('div');
     this.displayContainer = document.createElement('div');
     this.keysContainer = document.createElement('div');
-    this.prevItemDisplay = document.createElement('div');
-    this.currentItemDisplay = document.createElement('div');
+    this.prevItemDisplay = document.createElement('div'); // элемент для отображения предыдущих операций
+    this.currentItemDisplay = document.createElement('div'); // элемент для отображения текущего значения
     this.optionsContainer = document.createElement('div');
     this.integersOption = document.createElement('div');
     this.priorityOption = document.createElement('div');
-    this.checkboxElement = new Checkbox();
-    this.defaultRadioCheck = true;
-    this.radioElementInt = new RadioElement(
+    this.checkboxElement = new Checkbox(); // чекбокс для вычеслений с приоритетом операций
+    this.defaultRadioCheck = true; // значение по умолчанию для радиокнопок
+    this.radioElementInt = new RadioElement( // радиоэлемент для включения режима работы целыми числами
       'integers',
       'Int',
       !this.defaultRadioCheck,
     );
     this.radioElementDec = new RadioElement(
-      'integers',
+      'Decimals', // радиоэлемент для включения режима работы вещественными числами
       'Dec',
       this.defaultRadioCheck,
     );
 
-    this.actualFontSize = 32;
+    this.button = new Button('Show history');
+    this.historyContainer = document.createElement('div'); // окно для отображения истории операций
+    this.historyWindow = document.createElement('div');
+    this.historyWindowInnerContainer = document.createElement('div');
 
-    this.currentSymbol = null;
+    this.actualFontSize = 32; // размер шрифта по умолчанию, если число слишком большое оно будет уменьшаться
+
+    this.currentSymbol = null; // текущий символ операции
     this.prevNumber = null;
     this.currentNumber = null;
 
-    this.numbersStack = [];
-    this.operandsStack = [];
+    this.numbersStack = []; // стэк чисел используется для вычеслений с приоритетом
+    this.operandsStack = []; // стэк символов операциё используется для вычеслений с приоритетом
     this.priorityRanks = {
+      // приоритеты символов
       '+': 1,
       '-': 1,
       '✕': 2,
@@ -52,6 +54,7 @@ class Calculator {
   }
 
   generateKeys() {
+    // генерация клавиш клавиатуры калькулятора
     const keys = keyValues.map((item) => {
       const key = document.createElement('button');
       key.classList.add('key');
@@ -73,6 +76,7 @@ class Calculator {
   }
 
   calc(currentNumber = this.currentNumber) {
+    // функция которая выполняет все вычесления
     let result = currentNumber;
     if (this.prevNumber !== null) {
       switch (this.currentSymbol) {
@@ -91,7 +95,7 @@ class Calculator {
         default:
           result = currentNumber;
       }
-
+      /* сохраняем текущее вычесление в массив и отображаем его */
       this.operationHistory.push(
         `${this.prevNumber} ${this.currentSymbol} ${currentNumber} = ${result}`,
       );
@@ -102,15 +106,17 @@ class Calculator {
   }
 
   calcWithoutPriority(operand, lastNumber) {
+    // вычисление без приоритета операций
     this.currentNumber = lastNumber;
     this.prevNumber = this.calc(this.currentNumber);
     this.currentSymbol = operand;
-    this.showCalcHistory(this.currentSymbol, this.currentNumber);
+    this.showCalcHistoryOnDisplay(this.currentSymbol, this.currentNumber);
     this.actualFontSize = 32;
     this.currentItemDisplay.textContent = '';
   }
 
   getResultWithoutPriority() {
+    // при нажатии на = вычисляем и отображаем результат без приоритета
     const showValue =
       this.currentItemDisplay.textContent !== ''
         ? this.calc(parseFloat(this.currentItemDisplay.textContent, 10))
@@ -122,7 +128,8 @@ class Calculator {
     this.currentSymbol = '';
   }
 
-  showCalcHistory(operand, lastNumber) {
+  showCalcHistoryOnDisplay(operand, lastNumber) {
+    // отображаем историю вычислений на дисплее Калькулятора
     const lastOperationElement = document.createElement('span');
     const lasOperandElement = document.createElement('span');
     lasOperandElement.classList.add('symbol-element');
@@ -132,6 +139,7 @@ class Calculator {
     this.prevItemDisplay.appendChild(lastOperationElement);
   }
 
+  // вычисляем с приоритетом
   calcWithPriority(operand, lastNumber, recCall = false) {
     const lastOperand = operand;
     const operandsStackLength = this.operandsStack.length;
@@ -139,14 +147,15 @@ class Calculator {
     const isHigherPriority =
       this.priorityRanks[lastOperand] > this.priorityRanks[lastOperandInStack];
     this.numbersStack.push(lastNumber);
+    /* аргумент reCCall используется чтобы узнать вызвана ли наша функция рекурсивно */
     if (!recCall) {
-      this.showCalcHistory(lastOperand, lastNumber);
+      this.showCalcHistoryOnDisplay(lastOperand, lastNumber);
     }
     if (recCall) {
       this.prevItemDisplay.textContent = '';
-      this.showCalcHistory(lastOperand, lastNumber);
+      this.showCalcHistoryOnDisplay(lastOperand, lastNumber);
     }
-    this.currentItemDisplay.textContent = '';
+
     if (operandsStackLength === 0 || isHigherPriority) {
       this.operandsStack.push(operand);
     }
@@ -158,8 +167,11 @@ class Calculator {
       const resultNumber = this.calc();
       this.calcWithPriority(lastOperand, resultNumber, true);
     }
+
+    this.currentItemDisplay.textContent = '';
   }
 
+  // получаем результат при нажатии на  = с приоритетом
   getResultWithPriority() {
     const numbersStuckLength = this.numbersStack.length;
 
@@ -190,10 +202,12 @@ class Calculator {
     const isNumberOrDot = !/^[+\-✕÷C=±]$/.test(value);
     const isEquals = value === '=';
     const lastNumber = parseFloat(this.currentItemDisplay.textContent, 10);
+    // если число или точка то просто отображаем их на дисплее калькулятора
     if (isNumberOrDot) {
       this.showValueOnDisplay(value);
     }
 
+    // если символ операции то выполяем операцию
     if (isSymbol && this.currentItemDisplay.textContent !== '') {
       if (this.checkboxElement.checkbox.checked) {
         this.calcWithPriority(value, lastNumber);
@@ -202,6 +216,7 @@ class Calculator {
       }
     }
 
+    // если символ = то вычесляем и отображаем результат
     if (isEquals) {
       if (this.checkboxElement.checkbox.checked) {
         this.getResultWithPriority();
@@ -209,19 +224,20 @@ class Calculator {
         this.getResultWithoutPriority();
       }
     }
-
+    // если ± то меняем знак числа на противоположный
     if (isPlusMinus) {
       this.currentItemDisplay.textContent =
         this.currentItemDisplay.textContent[0] === '-'
           ? this.currentItemDisplay.textContent.slice(1)
           : `-${this.currentItemDisplay.textContent}`;
     }
-
+    // если кнопка C то все чистим
     if (isC) {
       this.clear();
     }
   }
 
+  // если наше число очень большое, то мы уменьшм шрифт на дисплее, чтобы оно вместилось
   scaleMainItemFontSize() {
     this.actualFontSize = autoScaleText(
       this.displayContainer.clientWidth,
@@ -231,6 +247,7 @@ class Calculator {
     this.currentItemDisplay.style.fontSize = `${this.actualFontSize}px`;
   }
 
+  // всю историю операций в отдельном окне
   showHistory() {
     this.historyWindowInnerContainer.innerHTML = '';
     const history = this.operationHistory.map((item) => {
@@ -239,11 +256,12 @@ class Calculator {
       return el;
     });
     this.historyWindowInnerContainer.append(...history.reverse());
-    if(this.historyWindowInnerContainer.clientHeight >= 320) {
-      this.historyWindowInnerContainer.classList.add('scroll-y')
+    if (this.historyWindowInnerContainer.clientHeight >= 320) {
+      this.historyWindowInnerContainer.classList.add('scroll-y');
     }
   }
 
+  // отбражаем наше число или точку на дисплее
   showValueOnDisplay(value) {
     const isDot = value === '.';
     this.scaleMainItemFontSize();
@@ -258,6 +276,7 @@ class Calculator {
   }
 
   addListeners() {
+    // слушатель событий для кнопок клавиатуры, при нажатии производим операцию и добовлем анимацию кнопкам
     const mouseEventHandler = (e) => {
       const isKey = e.target.matches('.key');
       const isKeyDown = e.target.matches('.key-down');
@@ -270,6 +289,7 @@ class Calculator {
       }
     };
 
+    // слушатель для радиокнопок которые определяют режим работы
     const integersOptionHandler = (e) => {
       if (e.target.matches('label')) {
         this.defaultRadioCheck = !this.defaultRadioCheck;
@@ -277,7 +297,7 @@ class Calculator {
         this.radioElementDec.radio.checked = this.defaultRadioCheck;
       }
     };
-
+    // слушатель для чекбока, который включения/отключения приоритета операций
     const priorityCheckboxHandler = () => {
       this.checkboxElement.checkbox.checked =
         !this.checkboxElement.checkbox.checked;
@@ -305,6 +325,7 @@ class Calculator {
     this.keysContainer.addEventListener('mouseup', mouseEventHandler);
   }
 
+  // создаем элементы которые быдут отображаться на дисплее
   createDisplayItem(content) {
     const displayItem = document.createElement('div');
     displayItem.classList.add('display-item');
@@ -326,7 +347,7 @@ class Calculator {
     this.keysContainer.classList.add('keys-container');
     this.historyContainer.classList.add('history-container');
     this.historyWindow.classList.add('history-window');
-    this.historyWindowInnerContainer.classList.add('history-inner')
+    this.historyWindowInnerContainer.classList.add('history-inner');
     this.historyContainer.append(this.button.element);
 
     this.currentItemDisplay = this.createDisplayItem('');
