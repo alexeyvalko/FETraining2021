@@ -18,9 +18,7 @@ body {
 
 /* width */
 ::-webkit-scrollbar {
-  position: absolute;
   width: 10px;
-  right: 40px;
 }
 
 /* Track */
@@ -73,6 +71,7 @@ body {
   gap: 5px;
   align-items: flex-start;
   background-color: $calcKeysContainerBgColor;
+  background: linear-gradient(157deg, $calcKeysContainerBgColor 70%, lighten($calcKeysContainerBgColor, 5%) 100%);
   padding: 40px;
   border-radius: $calcBorderRadius;
   filter: drop-shadow(0 2px 8px lighten($calcKeyBgColor, 10%));

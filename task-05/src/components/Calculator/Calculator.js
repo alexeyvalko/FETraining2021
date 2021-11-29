@@ -161,13 +161,15 @@ class Calculator {
   }
 
   getResultWithPriority() {
+    console.log(this.numbersStack);
+    const numbersStuckLength = this.numbersStack.length;
+
     if (this.currentItemDisplay.textContent !== '') {
       const lastNumber = parseFloat(this.currentItemDisplay.textContent, 10);
       this.numbersStack.push(lastNumber);
       this.currentItemDisplay.textContent = '';
     }
 
-    const numbersStuckLength = this.numbersStack.length;
     if (numbersStuckLength > 1) {
       this.currentNumber = this.numbersStack.pop();
       this.prevNumber = this.numbersStack.pop();
