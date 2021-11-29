@@ -3,12 +3,12 @@ class RadioElement {
     this.radio = document.createElement('input');
     this.radio.type = 'radio';
     this.radio.classList.add('radio-element');
-    this.radio.id = 'radio';
+    this.radio.id = `${name}-${text}`;
     this.radio.name = name;
     this.radio.checked = defaultCheck;
     this.label = document.createElement('label');
     this.label.classList.add('radio-label');
-    this.label.for = 'radio';
+    this.label.setAttribute('for', `${name}-${text}`);
     this.label.textContent = text;
     this.label.appendChild(this.radio);
 

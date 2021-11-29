@@ -2,10 +2,16 @@ import keyValues from './keyValues';
 import autoScaleText from '../autoScaleText';
 import Checkbox from '../Checkbox';
 import RadioElement from '../RadioElement';
+import Button from '../Button/Button';
 
 class Calculator {
   constructor(parentElement) {
     this.rootElement = parentElement;
+    this.button = new Button('Show history');
+    this.historyContainer = document.createElement('div');
+    this.historyWindow = document.createElement('div');
+    this.historyWindowInnerContainer = document.createElement('div');
+
     this.calculator = document.createElement('div');
     this.displayContainer = document.createElement('div');
     this.keysContainer = document.createElement('div');
@@ -26,22 +32,13 @@ class Calculator {
       'Dec',
       this.defaultRadioCheck,
     );
-    this.priorityOption.append(this.checkboxElement.checkboxContainer);
-    this.integersOption.append(
-      this.radioElementInt.radioContainer,
-      this.radioElementDec.radioContainer,
-    );
-    this.priorityOption.classList.add('priority-option');
-    this.integersOption.classList.add('integers-option');
-    this.optionsContainer.classList.add('options-container');
-    this.calculator.classList.add('calculator');
-    this.displayContainer.classList.add('display-container');
-    this.keysContainer.classList.add('keys-container');
+
+    this.actualFontSize = 32;
 
     this.currentSymbol = null;
     this.prevNumber = null;
     this.currentNumber = null;
-    this.actualFontSize = 32;
+
     this.numbersStack = [];
     this.operandsStack = [];
     this.priorityRanks = {
@@ -50,6 +47,8 @@ class Calculator {
       '✕': 2,
       '÷': 2,
     };
+
+    this.operationHistory = []; // здесь хранится история операций
   }
 
   generateKeys() {
@@ -69,7 +68,7 @@ class Calculator {
     this.actualFontSize = 32;
     this.currentSymbol = '';
     this.prevNumber = null;
-    this.numbersStack = []
+    this.numbersStack = [];
     this.operandsStack = [];
   }
 
@@ -92,6 +91,11 @@ class Calculator {
         default:
           result = currentNumber;
       }
+
+      this.operationHistory.push(
+        `${this.prevNumber} ${this.currentSymbol} ${currentNumber} = ${result}`,
+      );
+      this.showHistory();
     }
 
     return this.radioElementInt.radio.checked ? Math.round(result) : result;
@@ -125,9 +129,8 @@ class Calculator {
     lastOperationElement.textContent = ` ${lastNumber}`;
     lasOperandElement.textContent = ` ${operand}`;
     lastOperationElement.insertAdjacentElement('beforeend', lasOperandElement);
-    this.prevItemDisplay.appendChild(lastOperationElement)
+    this.prevItemDisplay.appendChild(lastOperationElement);
   }
-
 
   calcWithPriority(operand, lastNumber, recCall = false) {
     const lastOperand = operand;
@@ -137,11 +140,11 @@ class Calculator {
       this.priorityRanks[lastOperand] > this.priorityRanks[lastOperandInStack];
     this.numbersStack.push(lastNumber);
     if (!recCall) {
-      this.showCalcHistory(lastOperand, lastNumber)
+      this.showCalcHistory(lastOperand, lastNumber);
     }
     if (recCall) {
       this.prevItemDisplay.textContent = '';
-      this.showCalcHistory(lastOperand, lastNumber)
+      this.showCalcHistory(lastOperand, lastNumber);
     }
     this.currentItemDisplay.textContent = '';
     if (operandsStackLength === 0 || isHigherPriority) {
@@ -227,6 +230,19 @@ class Calculator {
     this.currentItemDisplay.style.fontSize = `${this.actualFontSize}px`;
   }
 
+  showHistory() {
+    this.historyWindowInnerContainer.innerHTML = '';
+    const history = this.operationHistory.map((item) => {
+      const el = document.createElement('div');
+      el.textContent = item;
+      return el;
+    });
+    this.historyWindowInnerContainer.append(...history);
+    if(this.historyWindowInnerContainer.clientHeight >= 320) {
+      this.historyWindowInnerContainer.classList.add('scroll-y')
+    }
+  }
+
   showValueOnDisplay(value) {
     const isDot = value === '.';
     this.scaleMainItemFontSize();
@@ -262,11 +278,27 @@ class Calculator {
     };
 
     const priorityCheckboxHandler = () => {
-      this.checkboxElement.checkbox.checked = !this.checkboxElement.checkbox.checked;
+      this.checkboxElement.checkbox.checked =
+        !this.checkboxElement.checkbox.checked;
       this.clear();
-    }
+    };
 
-    this.checkboxElement.label.addEventListener('click', priorityCheckboxHandler)
+    const buttonHandler = () => {
+      const isWindowOpen = this.historyContainer.contains(this.historyWindow);
+      if (isWindowOpen) {
+        this.historyWindow.remove();
+      } else {
+        this.showHistory();
+        this.historyWindow.append(this.historyWindowInnerContainer);
+        this.historyContainer.appendChild(this.historyWindow);
+      }
+    };
+
+    this.button.element.addEventListener('click', buttonHandler);
+    this.checkboxElement.label.addEventListener(
+      'click',
+      priorityCheckboxHandler,
+    );
     this.integersOption.addEventListener('click', integersOptionHandler);
     this.keysContainer.addEventListener('mousedown', mouseEventHandler);
     this.keysContainer.addEventListener('mouseup', mouseEventHandler);
@@ -280,6 +312,22 @@ class Calculator {
   }
 
   render() {
+    this.priorityOption.append(this.checkboxElement.checkboxContainer);
+    this.integersOption.append(
+      this.radioElementInt.radioContainer,
+      this.radioElementDec.radioContainer,
+    );
+    this.priorityOption.classList.add('priority-option');
+    this.integersOption.classList.add('integers-option');
+    this.optionsContainer.classList.add('options-container');
+    this.calculator.classList.add('calculator');
+    this.displayContainer.classList.add('display-container');
+    this.keysContainer.classList.add('keys-container');
+    this.historyContainer.classList.add('history-container');
+    this.historyWindow.classList.add('history-window');
+
+    this.historyContainer.append(this.button.element);
+
     this.currentItemDisplay = this.createDisplayItem('');
     this.prevItemDisplay = this.createDisplayItem('');
     this.optionsContainer.append(this.priorityOption, this.integersOption);
@@ -290,7 +338,7 @@ class Calculator {
       this.displayContainer,
       this.keysContainer,
     );
-    this.rootElement.append(this.calculator);
+    this.rootElement.append(this.calculator, this.historyContainer);
     this.addListeners();
   }
 }
