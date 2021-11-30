@@ -10,9 +10,9 @@
   background: linear-gradient(
     90deg,
     $calcKeyBgColor 50%,
-    lighten($calcKeyBgColor, 10%) 100%
+    lighten($calcKeyBgColor, 15%) 100%
   );
-  background-size: 150%;
+  background-size: 200%;
   border: none;
   outline: none;
   overflow: hidden;

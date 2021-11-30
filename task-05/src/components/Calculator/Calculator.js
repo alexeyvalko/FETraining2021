@@ -34,7 +34,8 @@ class Calculator {
     this.historyWindow = document.createElement('div');
     this.historyWindowInnerContainer = document.createElement('div');
 
-    this.actualFontSize = 32; // размер шрифта по умолчанию, если число слишком большое оно будет уменьшаться
+    this.DEFAULT_FONT_SIZE = 32; // размер шрифта по умолчанию, если число слишком большое оно будет уменьшатьс
+    this.actualFontSize = this.DEFAULT_FONT_SIZE;
 
     this.currentSymbol = null; // текущий символ операции
     this.prevNumber = null;
@@ -68,7 +69,7 @@ class Calculator {
     this.prevItemDisplay.textContent = '';
     this.currentItemDisplay.textContent = '';
     this.currentNumber = null;
-    this.actualFontSize = 32;
+    this.actualFontSize = this.DEFAULT_FONT_SIZE ;
     this.currentSymbol = '';
     this.prevNumber = null;
     this.numbersStack = [];
@@ -111,7 +112,7 @@ class Calculator {
     this.prevNumber = this.calc(this.currentNumber);
     this.currentSymbol = operand;
     this.showCalcHistoryOnDisplay(this.currentSymbol, this.currentNumber);
-    this.actualFontSize = 32;
+    this.actualFontSize = this.DEFAULT_FONT_SIZE;
     this.currentItemDisplay.textContent = '';
   }
 
@@ -173,15 +174,15 @@ class Calculator {
 
   // получаем результат при нажатии на  = с приоритетом
   getResultWithPriority() {
-    const numbersStuckLength = this.numbersStack.length;
-
+    const numbersStackLength = this.numbersStack.length;
+    const MIN_STACK_LENGTH = 1;
     if (this.currentItemDisplay.textContent !== '') {
       const lastNumber = parseFloat(this.currentItemDisplay.textContent, 10);
       this.numbersStack.push(lastNumber);
       this.currentItemDisplay.textContent = '';
     }
 
-    if (numbersStuckLength > 1) {
+    if (numbersStackLength > MIN_STACK_LENGTH) {
       this.currentNumber = this.numbersStack.pop();
       this.prevNumber = this.numbersStack.pop();
       this.currentSymbol = this.operandsStack.pop();
@@ -189,7 +190,7 @@ class Calculator {
       this.numbersStack.push(lastNumber);
       this.getResultWithPriority();
     }
-    if (numbersStuckLength === 1) {
+    if (numbersStackLength === MIN_STACK_LENGTH) {
       this.prevItemDisplay.textContent = '';
       this.currentItemDisplay.textContent = this.numbersStack.pop();
     }
