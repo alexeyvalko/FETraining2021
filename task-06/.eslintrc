@@ -1,0 +1,13 @@
+{
+  "env": {
+    "browser": true
+  },
+  "extends": [
+    "airbnb-base",
+    "eslint:recommended",
+    "prettier"
+  ],
+  "rules": {
+    "class-methods-use-this": 0
+  }
+}
