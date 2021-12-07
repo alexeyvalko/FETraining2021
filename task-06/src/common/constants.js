@@ -1,7 +1,7 @@
 const K1 = 1000; // цена K1
 const K2 = 2000; // цена K2
 
-const TITLE_BREADS = 'Основания';
+const TITLE_BREADS = 'Основание';
 const TITLE_INGREDIENTS = 'Ингридиенты';
 const TITLE_SAUCES = 'Соусы';
 

@@ -6,7 +6,7 @@ import {
 } from '../../common/constants';
 
 class Order {
-  constructor(breads, ingredients, sauces) {
+  constructor(breads, ingredients, sauces, state, checkout) {
     this.element = document.createElement('div');
     this.container = document.createElement('div');
     this.breads = breads;
@@ -16,10 +16,8 @@ class Order {
     this.breadElements = [];
     this.ingredientElements = [];
     this.saucesElements = [];
-
-    this.breadToOrder = '';
-    this.saucesToOrder = [];
-    this.ingredientsToOrder = [];
+    this.checkout = checkout;
+    this.state = state;
   }
 
   generateToppingElements(toppings) {
@@ -35,7 +33,7 @@ class Order {
 
   createTitle(title) {
     const titleElement = document.createElement('h2');
-    titleElement.classList.add('row-title');
+    titleElement.classList.add('title');
     titleElement.textContent = title;
     return titleElement;
   }
@@ -50,22 +48,22 @@ class Order {
   addToCheckout(title, targetText) {
     switch (title) {
       case TITLE_BREADS:
-        this.breadToOrder = targetText;
+        this.state.bread = targetText;
         break;
       case TITLE_INGREDIENTS:
-        if (!this.ingredientsToOrder.includes(targetText)) {
-          this.ingredientsToOrder.push(targetText);
+        if (!this.state.ingredients.includes(targetText)) {
+          this.state.ingredients.push(targetText);
         } else {
-          this.ingredientsToOrder = this.ingredientsToOrder.filter(
+          this.state.ingredients = this.state.ingredients.filter(
             (value) => value !== targetText,
           );
         }
         break;
       case TITLE_SAUCES:
-        if (!this.saucesToOrder.includes(targetText)) {
-          this.saucesToOrder.push(targetText);
+        if (!this.state.sauces.includes(targetText)) {
+          this.state.sauces.push(targetText);
         } else {
-          this.saucesToOrder = this.saucesToOrder.filter(
+          this.state.sauces = this.state.sauces.filter(
             (value) => value !== targetText,
           );
         }
@@ -94,6 +92,7 @@ class Order {
         });
       }
       this.addToCheckout(title, targetText);
+      this.checkout.render();
     };
 
     container.addEventListener('click', eventHandler);

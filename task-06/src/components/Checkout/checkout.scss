@@ -11,4 +11,14 @@
 .checkout-container {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  gap: 30px;
+}
+
+.price-row {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
 }

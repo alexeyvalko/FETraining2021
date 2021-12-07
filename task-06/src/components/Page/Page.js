@@ -8,8 +8,13 @@ import Checkout from '../Checkout/Checkout';
 class Page {
   constructor() {
     this.element = document.createElement('div');
-    this.order = new Order(breads, ingredients, sauces);
-    this.checkout = new Checkout();
+    this.state = {
+      bread: '',
+      sauces: [],
+      ingredients: []
+    }
+    this.checkout = new Checkout(this.state);
+    this.order = new Order(breads, ingredients, sauces, this.state, this.checkout);
   }
 
   render() {
