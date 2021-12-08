@@ -76,6 +76,7 @@ class Checkout {
 
   render() {
     this.clear();
+
     this.container.append(this.title);
     if (this.state.bread) {
       const breadRow = this.createRow(TITLE_BREADS, this.state.bread);

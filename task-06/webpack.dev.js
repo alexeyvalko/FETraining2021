@@ -25,5 +25,16 @@ module.exports = merge(common, {
     compress: true,
     inline: true,
     port: 8080,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3500'
+      }
+    }
+  ,
+    headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': '*',
+        'Access-Control-Allow-Methods': '*',
+    },
   },
 });
