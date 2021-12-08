@@ -2,10 +2,9 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common');
 
-
 module.exports = merge(common, {
   mode: 'development',
-  devtool:  'inline-source-map',
+  devtool: 'inline-source-map',
 
   module: {
     rules: [
@@ -15,10 +14,8 @@ module.exports = merge(common, {
       },
     ],
   },
-  
-  plugins: [
-    new ESLintPlugin({ extensions: ['js'] })
-  ],
+
+  plugins: [new ESLintPlugin({ extensions: ['js'] })],
 
   devServer: {
     open: true,
@@ -27,14 +24,13 @@ module.exports = merge(common, {
     port: 8080,
     proxy: {
       '/api': {
-        target: 'http://localhost:3500'
-      }
-    }
-  ,
+        target: 'http://localhost:3500',
+      },
+    },
     headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': '*',
-        'Access-Control-Allow-Methods': '*',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Methods': '*',
     },
   },
 });
