@@ -4,6 +4,7 @@ import {
   TITLE_SAUCES,
   TITLE_INGREDIENTS,
 } from '../../common/constants';
+import addExtraCharge from '../../addExtraCharge';
 import Pizza from '../Pizza/Pizza';
 import Button from '../Button/Button';
 
@@ -59,6 +60,7 @@ class Checkout {
     const row = document.createElement('div');
     const titleElement = this.createTitle('Итого:');
     const infoElement = document.createElement('div');
+    this.totalPrice = addExtraCharge(this.totalPrice);
     infoElement.textContent = `Цена: ${this.totalPrice} Калории: ${this.totalCalories}`;
     row.classList.add('total-row');
     infoElement.classList.add('total-info');

@@ -5,6 +5,7 @@
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "dev": "webpack serve --config webpack.dev.js",
+    "server": "node ./src/server.js",
     "lint": "eslint src --fix"
   },
   "keywords": [],

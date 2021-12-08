@@ -10,25 +10,26 @@ const TITLE_INGREDIENTS = 'Ингридиенты';
 const TITLE_SAUCES = 'Соусы';
 
 const ingredients = [
-  { name: 'Сыр', cost: 70, calories: 100 },
-  { name: 'Колбаса', cost: 65, calories: 111 },
-  { name: 'Мясо', cost: 55, calories: 122 },
-  { name: 'Морепродукты', cost: 120, calories: 102 },
+  { name: 'Сыр', cost: 252, calories: 100 },
+  { name: 'Колбаса', cost: 265, calories: 111 },
+  { name: 'Мясо', cost: 275, calories: 12 },
+  { name: 'Грибы', cost: 310, calories: 12 },
+  { name: 'Морепродукты', cost: 360, calories: 102 },
 ];
 
 const sauces = [
-  { name: 'Томатный соус', cost: 15, calories: 100 },
-  { name: 'Чесночный соус', cost: 20, calories: 100 },
-  { name: 'Cырный соус', cost: 30, calories: 100 },
-  { name: 'Соус "Биг Тейсти"', cost: 50, calories: 100 },
+  { name: 'Томатный соус', cost: 185, calories: 120 },
+  { name: 'Чесночный соус', cost: 150, calories: 110 },
+  { name: 'Cырный соус', cost: 140, calories: 50 },
+  { name: 'Соус "Биг Тейсти"', cost: 220, calories: 80 },
 ];
 
 const breads = [
-  { name: 'Тонкое', cost: 110, calories: 100 },
-  { name: 'Толстое', cost: 150, calories: 120 },
-  { name: 'Слоёное', cost: 200, calories: 130 },
-  { name: 'Кальцоне', cost: 500, calories: 135 },
-  { name: 'Итальянское', cost: 500, calories: 135 },
+  { name: 'Тонкое', cost: 350, calories: 100 },
+  { name: 'Толстое', cost: 380, calories: 120 },
+  { name: 'Слоёное', cost: 410, calories: 130 },
+  { name: 'Кальцоне', cost: 580, calories: 135 },
+  { name: 'Итальянское', cost: 590, calories: 135 },
 ];
 
 export {
