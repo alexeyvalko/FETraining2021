@@ -12,7 +12,7 @@ class Checkout {
   constructor(state) {
     this.element = document.createElement('div');
     this.container = document.createElement('div');
-    this.button = new Button('Отправить');
+    this.button = new Button('Отправить').element;
     this.title = this.createTitle('Ваша пицца!');
     this.state = state;
     this.container.classList.add('checkout-container');
@@ -92,7 +92,7 @@ class Checkout {
       const sauceRow = this.createRow(TITLE_SAUCES, this.state.sauces);
       this.container.append(sauceRow);
     }
-    this.container.append(this.totalRow(), this.button.element);
+    this.container.append(this.totalRow(), this.button);
 
     this.element.classList.add('checkout');
     this.element.appendChild(this.container);
