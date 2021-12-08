@@ -5,14 +5,18 @@ import {
   TITLE_INGREDIENTS,
 } from '../../common/constants';
 import Pizza from '../Pizza/Pizza';
+import Button from '../Button/Button';
 
 class Checkout {
   constructor(state) {
     this.element = document.createElement('div');
     this.container = document.createElement('div');
+    this.button = new Button('Отправить');
     this.title = this.createTitle('Ваша пицца!');
     this.state = state;
     this.container.classList.add('checkout-container');
+    this.totalPrice = 0;
+    this.totalCalories = 0;
   }
 
   createTitle(title) {
@@ -27,7 +31,9 @@ class Checkout {
     try {
       priceRow.classList.add('price-row');
       const price = Pizza.getPrice(topping, title);
+      this.totalPrice += price;
       const calories = Pizza.getCalories(topping, title);
+      this.totalCalories += calories;
       priceRow.textContent = `${topping} - Цена: ${price} Калории: ${calories}`;
     } catch (err) {
       console.error('Ошибка!');
@@ -43,15 +49,27 @@ class Checkout {
       row.append(titleElement, priceRow);
     } else {
       const priceRow = topping.map((item) => this.createPriceRow(item, title));
-      row.classList.add('row');
       row.append(titleElement, ...priceRow);
     }
     row.classList.add('row');
     return row;
   }
 
+  totalRow() {
+    const row = document.createElement('div');
+    const titleElement = this.createTitle('Итого:');
+    const infoElement = document.createElement('div');
+    infoElement.textContent = `Цена: ${this.totalPrice} Калории: ${this.totalCalories}`;
+    row.classList.add('total-row');
+    infoElement.classList.add('total-info');
+    row.append(titleElement, infoElement);
+    return row;
+  }
+
   clear() {
     this.container.innerHTML = '';
+    this.totalPrice = 0;
+    this.totalCalories = 0;
   }
 
   render() {
@@ -72,6 +90,8 @@ class Checkout {
       const sauceRow = this.createRow(TITLE_SAUCES, this.state.sauces);
       this.container.append(sauceRow);
     }
+    this.container.append(this.totalRow(), this.button.element);
+
     this.element.classList.add('checkout');
     this.element.appendChild(this.container);
   }

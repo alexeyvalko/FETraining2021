@@ -22,3 +22,14 @@
   flex-wrap: wrap;
   gap: 10px;
 }
+
+.total-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+.total-info {
+  margin-top: 5px;
+}
