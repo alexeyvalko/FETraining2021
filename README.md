@@ -10,4 +10,4 @@
 
 Все пиццы сохраняются в папке `pizzas`.
 
-![image](https://user-images.githubusercontent.com/60567379/145673262-6d7266bd-aa4c-4aa7-a240-2bbfd4c56f93.png)
+![image](https://user-images.githubusercontent.com/60567379/145680088-2c76666a-234b-4ac0-aebf-8a94cd9d3fd0.png)
