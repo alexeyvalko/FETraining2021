@@ -34,7 +34,6 @@ const server = http.createServer((req, res) => {
   } catch (error) {
     process.stderr.write(`${error}`);
     process.stdout.write('\n');
-    process.exit(1);
   }
 });
 
