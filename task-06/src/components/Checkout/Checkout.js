@@ -8,7 +8,13 @@ import addExtraCharge from '../../addExtraCharge';
 import Pizza from '../Pizza/Pizza';
 import Button from '../Button/Button';
 
+/** Class representing an checkout window. */
+
 class Checkout {
+  /** Create a checkout window.
+   * @param {object} state - object with picked ingredients
+   */
+
   constructor(state) {
     this.element = document.createElement('div');
     this.container = document.createElement('div');
@@ -20,6 +26,12 @@ class Checkout {
     this.totalCalories = 0;
   }
 
+  /**
+   * Create h2 element from string
+   * @param {string} title - category title.
+   * @return {HTMLElement} h2 element
+   */
+
   createTitle(title) {
     const titleElement = document.createElement('h2');
     titleElement.classList.add('title');
@@ -27,20 +39,34 @@ class Checkout {
     return titleElement;
   }
 
-  createPriceRow(topping, title) {
+  /**
+   * Create row with price and calories
+   * @param {string} ingredient - ingredient name  .
+   * @param {string} title - category of topping
+   * @return {HTMLElement} html element representing a row with price and calories
+   */
+
+  createPriceRow(ingredient, title) {
     const priceRow = document.createElement('div');
     try {
       priceRow.classList.add('price-row');
-      const price = Pizza.getPrice(topping, title);
+      const price = Pizza.getPrice(ingredient, title);
       this.totalPrice += price;
-      const calories = Pizza.getCalories(topping, title);
+      const calories = Pizza.getCalories(ingredient, title);
       this.totalCalories += calories;
-      priceRow.textContent = `${topping} - Цена: ${price} Калории: ${calories}`;
+      priceRow.textContent = `${ingredient} - Цена: ${price} Калории: ${calories}`;
     } catch (err) {
       console.error('Ошибка!');
     }
     return priceRow;
   }
+
+  /**
+   * Create row for category of topping
+   * @param {string} title - category name .
+   * @param {array | string} topping - string or array with ingredient names
+   * @return {HTMLElement} html element representing a row
+   */
 
   createRow(title, topping) {
     const row = document.createElement('div');
@@ -55,6 +81,11 @@ class Checkout {
     row.classList.add('row');
     return row;
   }
+
+  /**
+   * Create row with total price and calories
+   * @return {HTMLElement} html element representing a row with total price and calories
+   */
 
   totalRow() {
     const row = document.createElement('div');
@@ -73,6 +104,11 @@ class Checkout {
     this.totalPrice = 0;
     this.totalCalories = 0;
   }
+
+  
+  /**
+   * Render checkout window
+   */
 
   render() {
     this.clear();

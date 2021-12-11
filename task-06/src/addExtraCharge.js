@@ -1,5 +1,12 @@
 import {K1, K2, extraCharge1, extraCharge2, extraCharge3} from './common/constants'
 
+
+/** Add extra charge to pizza
+ * @param  {number} totalPice - total price of pizza without extra charge
+ * @return {number} total price with extra charge
+ */
+
+
 const addExtraCharge  = (totalPice) => {
   let price = parseInt(totalPice, 10)
   const lowerK1 = totalPice < K1;

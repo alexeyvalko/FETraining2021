@@ -5,7 +5,17 @@ import {
   TITLE_SAUCES,
 } from '../../common/constants';
 
+/** Class representing an order window. */
+
 class Order {
+  /**
+   * Create a order window.
+   * @param {array} breads - array breads.
+   * @param {array} ingredients - array with ingredients
+   * @param {array} sauces - array with sauces
+   * @param {object} checkout - instance of Checkout class
+   */
+
   constructor(breads, ingredients, sauces, state, checkout) {
     this.element = document.createElement('div');
     this.container = document.createElement('div');
@@ -20,16 +30,28 @@ class Order {
     this.state = state;
   }
 
-  generateToppingElements(toppings) {
-    const toppingsArray = toppings.map((topping) => {
+  /**
+   * Convert array with ingredients to array with div elements.
+   * @param {array} topping - array with ingredients.
+   * @return {array} array with div elements
+   */
+
+  generateToppingElements(topping) {
+    const toppingsArray = topping.map((ingredient) => {
       const el = document.createElement('div');
       el.classList.add('order-topping');
-      el.textContent = topping.name;
+      el.textContent = ingredient.name;
       return el;
     });
 
     return toppingsArray;
   }
+
+  /**
+   * Create h2 element from string
+   * @param {string} title - category title.
+   * @return {HTMLElement} h2 element
+   */
 
   createTitle(title) {
     const titleElement = document.createElement('h2');
@@ -38,12 +60,24 @@ class Order {
     return titleElement;
   }
 
-  createToppingContainer(toppingsElements) {
+  /**
+   * Create div container and put HTMLelements in it
+   * @param {array} toppingElements - array with HTMLelements.
+   * @return {HTMLElement} div container
+   */
+
+  createToppingContainer(toppingElements) {
     const toppingsContainer = document.createElement('div');
     toppingsContainer.classList.add('toppings-container');
-    toppingsContainer.append(...toppingsElements);
+    toppingsContainer.append(...toppingElements);
     return toppingsContainer;
   }
+
+  /**
+   * Add ingredients to state
+   * @param {string} title - category of ingredients.
+   * @param {string} targetText - name of picked ingredient.
+   */
 
   addToCheckout(title, targetText) {
     switch (title) {
@@ -73,6 +107,13 @@ class Order {
     }
   }
 
+  /**
+   * Add event listeners to container with ingredients
+   * @param {HTMLElement} container - container with ingredients .
+   * @param {array} elements - array with ingredients
+   * @param {string} elements - category of ingredients
+   */
+
   addListeners(container, elements, title) {
     const eventHandler = (e) => {
       const targetText = e.target.textContent;
@@ -98,6 +139,13 @@ class Order {
     container.addEventListener('click', eventHandler);
   }
 
+  /**
+   * Create row for category of topping
+   * @param {string} title - category name .
+   * @param {array} toppingElements - array with ingredient elements
+   * @return {HTMLElement} html element representing a row
+   */
+
   createRow(title, toppingElements) {
     const row = document.createElement('div');
     const titleElement = this.createTitle(title);
@@ -107,6 +155,10 @@ class Order {
     row.append(titleElement, toppingsContainer);
     return row;
   }
+
+  /**
+   * Render order window
+   */
 
   render() {
     this.breadElements = this.generateToppingElements(this.breads);

@@ -6,7 +6,9 @@ import Order from '../Order/Order';
 import Checkout from '../Checkout/Checkout';
 import Pizza from '../Pizza/Pizza';
 
+/** Class representing a page. */
 class Page {
+
   constructor() {
     this.element = document.createElement('div');
     this.state = {
@@ -24,17 +26,24 @@ class Page {
     );
   }
 
+  /** Add listener to checkout button and send request. */
+
   addButtonListener() {
     const eventHandler = async () => {
-      const response = await request(
-        new Pizza(this.state.bread, this.state.sauces, this.state.ingredients),
+      const pizza = new Pizza(
+        this.state.bread,
+        this.state.sauces,
+        this.state.ingredients,
       );
+      const response = await request(pizza);
       console.log(response);
     };
 
     this.checkout.button.addEventListener('click', eventHandler);
   }
-  
+
+  /** Render page */
+
   render() {
     this.order.render();
     this.checkout.render();
