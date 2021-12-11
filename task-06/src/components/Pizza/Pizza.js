@@ -25,7 +25,7 @@ class Pizza {
 
   /**
    * Get the price of the ingredient.
-   * @param {string} topping - ingredient name.
+   * @param {string} ingredient - ingredient name.
    * @param {string} title - Ingredient category
    * @return {number} ingredient price
    */
