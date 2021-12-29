@@ -1,4 +1,5 @@
 import PictureOne from "./PictureOne";
+import PictureTwo from "./PictureTwo";
 
 class Canvas {
   constructor() {
@@ -11,10 +12,12 @@ class Canvas {
     this.ctx = this.element.getContext('2d');
 
     this.PictureOne = new PictureOne(this.ctx)
+    this.PictureTwo = new PictureTwo(this.ctx)
   }
 
   draw() {
-    this.PictureOne.draw()
+    this.PictureOne.draw(100, 200)
+    this.PictureTwo.draw(250, 200)
   }
 
   
