@@ -21,13 +21,13 @@ class PictureOne {
     this.ctx.stroke();
     this.ctx.fill();
 
-    this.ctx.beginPath();
+    this.ctx.beginPath(); 
     this.ctx.moveTo(x, y + 40);
     this.ctx.ellipse(x, y + 30, 10, 20, Math.PI / 2, 0, 2 * Math.PI); // рот
     this.ctx.stroke();
 
-    this.ctx.beginPath();
-    this.ctx.moveTo(x, y - 10); // нос
+    this.ctx.beginPath(); // нос
+    this.ctx.moveTo(x, y - 10); 
     this.ctx.lineTo(x - 8, y + 10);
     this.ctx.lineTo(x, y + 8);
     this.ctx.stroke();

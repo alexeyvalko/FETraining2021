@@ -21,6 +21,82 @@ body {
   border: 1px solid black;
 }
 
+.trash {
+  position: relative;
+  display: block;
+  margin:  20px auto;
+  border: 1px solid black;
+  width: 1024px;
+  height: 600px;
+}
+
+.trashcan {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 160px;
+  height: 200px;
+  cursor: pointer;
+}
+
+.paper {
+  position: absolute;
+  top: 120px;
+  left: 220px;
+  width: 80px;
+  height: 55px;
+  cursor: pointer;
+  background-image: url('../assets/paper.png');
+  background-size: cover;
+}
+
+.closed {
+  background-image: url('../assets/closed.png');
+  background-size: cover;
+}
+.opened {
+  background-image: url('../assets/opened.png');
+  background-size: cover;
+}
+
+
 .title {
   color: rgb(66, 66, 66);
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
+  margin:  10px auto;
+}
+
+.button {
+  border-radius: 5px;
+  position: relative;
+  padding: 16px 32px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1;
+  color: white;
+  background: #3143a8;
+  background: linear-gradient(
+    90deg,
+    #3143a8 50%,
+    lighten(#3143a8, 15%) 100%
+  );
+  background-size: 200%;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.1s, background-position 0.5s ease-in-out;
+
+  &:hover {
+    background-position: right;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 }
