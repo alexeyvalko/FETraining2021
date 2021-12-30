@@ -94,8 +94,8 @@ class TrashCan {
         paper.classList.add('paper');
         this.element.append(paper);
         target = paper;
-        target.style.left = `${e.pageX - target.offsetWidth / 2}px`;
-        target.style.top = `${e.pageY - target.offsetHeight / 2}px`;
+        target.style.left = `${e.pageX - shiftX + target.offsetWidth / 2}px`;
+        target.style.top = `${e.pageY - shiftY + target.offsetHeight / 2}px`;
         shiftX =  e.clientX - target.getBoundingClientRect().left +
         this.element.offsetLeft;shiftY =
         e.clientY - target.getBoundingClientRect().top + this.element.offsetTop;
