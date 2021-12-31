@@ -96,9 +96,14 @@ class TrashCan {
         target = paper;
         target.style.left = `${e.pageX - shiftX + target.offsetWidth / 2}px`;
         target.style.top = `${e.pageY - shiftY + target.offsetHeight / 2}px`;
-        shiftX =  e.clientX - target.getBoundingClientRect().left +
-        this.element.offsetLeft;shiftY =
-        e.clientY - target.getBoundingClientRect().top + this.element.offsetTop;
+        shiftX =
+          e.clientX -
+          target.getBoundingClientRect().left +
+          this.element.offsetLeft;
+        shiftY =
+          e.clientY -
+          target.getBoundingClientRect().top +
+          this.element.offsetTop;
         moveAt(e.pageX, e.pageY);
         document.onmousemove = moveHandler;
       }
