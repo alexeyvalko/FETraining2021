@@ -82,7 +82,7 @@ class TrashCan {
 
       if (target.matches('.paper')) {
         console.dir(this.element);
-        target.ondragstart = false;
+        target.ondragstart = () => false;
         target.style.zIndex = 1000;
         moveAt(e.pageX, e.pageY);
         document.onmousemove = moveHandler;
