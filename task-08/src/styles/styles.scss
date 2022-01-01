@@ -16,6 +16,24 @@ body {
   width: 100%;
 }
 
+.app-container {
+  margin-top: 100px;
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+  
+}
+
+.app-item {
+  background-color: rgba(218, 208, 80, 0.2);
+  width: 350px;
+  padding: 10px;
+  border: 1px solid #797676;
+  border-radius: 5px;
+}
+
 .title {
   color: rgb(66, 66, 66);
 }
@@ -29,11 +47,7 @@ body {
   line-height: 1;
   color: white;
   background: #3143a8;
-  background: linear-gradient(
-    90deg,
-    #3143a8 50%,
-    lighten(#3143a8, 15%) 100%
-  );
+  background: linear-gradient(90deg, #3143a8 50%, lighten(#3143a8, 15%) 100%);
   background-size: 200%;
   border: none;
   outline: none;
