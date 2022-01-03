@@ -1,3 +1,4 @@
+import ChangeInfoItem from './ChangeInfoItem';
 import LogItem from './LogItem';
 
 class App {
@@ -9,8 +10,12 @@ class App {
     this.log = new LogItem();
     this.logItem = this.log.logItem;
     this.logContainer = this.log.logContainer;
-    
+
+    this.changeInfo = new ChangeInfoItem();
+    this.changeInfoItem = this.changeInfo.item;
+
     this.items = [];
+    this.picketCard = null;
   }
 
   generateItems(n) {
@@ -18,6 +23,7 @@ class App {
     while (amount) {
       const item = document.createElement('div');
       item.classList.add('app-item');
+      item.dataset.item = `${amount}`;
       this.items.push(item);
       amount -= 1;
     }
@@ -69,13 +75,27 @@ class App {
     }, interval);
   }
 
+  addListener() {
+    const eventHandler = async (e) => {
+      const item = e.target.closest('.app-item');
+      if (item && item.dataset.item) {
+        this.picketCard = item.dataset.item;
+        const data = await this.getData(this.picketCard);
+        this.changeInfo.showData(data, this.picketCard);
+      }
+    };
+    document.addEventListener('click', eventHandler, { capture: true });
+  }
+
   render() {
     this.generateItems(3);
     this.showDataWithDelay(1);
     this.showDataWithDelay(2);
     this.showDataWithDelay(3);
-    this.appContainer.append(...this.items, this.logItem);
+    this.appContainer.append(...this.items, this.logItem, this.changeInfoItem);
     this.rootElement.append(this.appContainer);
+    this.addListener();
+    this.changeInfo.addListeners()
   }
 }
 

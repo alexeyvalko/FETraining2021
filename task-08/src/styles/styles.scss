@@ -19,31 +19,40 @@ body {
 .app-container {
   margin: 100px 50px;
   display: flex;
-  width: 100%;
   justify-content: flex-start;
   flex-wrap: wrap;
   gap: 10px;
-  
 }
 
 .app-item {
   background-color: rgba(218, 208, 80, 0.2);
-  width: 450px;
+  width: 30%;
   padding: 10px;
   border: 1px solid #797676;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  min-height: 200px;
-  max-height: 200px;
+  min-height: 300px;
+  max-height: 300px;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .title {
   color: rgb(66, 66, 66);
 }
 
+.input {
+  border: none;
+  background-color: transparent;
+  font-family: 'Arial', sans-serif;
+  font-size: 18px;
+  color: #797676;
+}
+
+.change-container,
 .log-container {
+  margin: 10px 0;
   max-height: 320px;
   text-align: left;
   display: flex;

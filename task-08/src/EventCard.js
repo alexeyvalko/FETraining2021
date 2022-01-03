@@ -1,5 +1,5 @@
-class Event {
-  constructor({name, date, time, description, priority}) {
+class EventCard {
+  constructor({name, date, time, priority, description} ) {
     this.name = name
     this.date = date
     this.time = time
@@ -8,4 +8,4 @@ class Event {
   }
 }
 
-export default Event;
+export default EventCard;
