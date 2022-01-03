@@ -53,7 +53,7 @@ class ChangeInfoItem {
       const key = e.target.dataset.item;
       this.data[key] = e.target.value;
       this.container.innerHTML = '';
-      this.showData(this.data);
+      this.showData(this.data, this.picketCard);
     };
 
     const clickHandler = (e) => {

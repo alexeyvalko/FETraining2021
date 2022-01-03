@@ -27,6 +27,7 @@ class App {
       this.items.push(item);
       amount -= 1;
     }
+    this.items.reverse()
   }
 
   async getData(n = 1) {
@@ -95,7 +96,7 @@ class App {
     this.appContainer.append(...this.items, this.logItem, this.changeInfoItem);
     this.rootElement.append(this.appContainer);
     this.addListener();
-    this.changeInfo.addListeners()
+    this.changeInfo.addListeners();
   }
 }
 
