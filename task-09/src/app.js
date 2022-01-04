@@ -1,12 +1,14 @@
+import Client from "./client/Client";
 
 class App {
   constructor(rootElement) {
     this.rootElement = rootElement;
-    this.appContainer = document.createElement('div');
+    this.client = new Client()
   }
 
    render() {
-    this.rootElement.append(this.appContainer);
+    this.client.render()
+    this.rootElement.append(this.client.container);
   }
 }
 

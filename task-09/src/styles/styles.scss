@@ -20,27 +20,50 @@ body {
   color: rgb(66, 66, 66);
 }
 
+.label {
+  margin-right: 10px;
+}
+
+.input {
+  border:  none;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #797676;
+}
+
 .button-container {
   display: flex;
-  justify-content: space-between;
-  width: 30%;
-  margin:  10px auto;
+  justify-content: flex-start;
+  gap: 5px;
+  width: 100%;
+  margin: 10px auto;
 }
 
 .button {
   border-radius: 5px;
   position: relative;
-  padding: 16px 32px;
+  padding: 10px 20px;
   font-weight: 600;
   font-size: 16px;
   line-height: 1;
   color: white;
   background: #3143a8;
-  background: linear-gradient(
-    90deg,
-    #3143a8 50%,
-    lighten(#3143a8, 15%) 100%
-  );
+  background: linear-gradient(90deg, #3143a8 50%, lighten(#3143a8, 15%) 100%);
   background-size: 200%;
   border: none;
   outline: none;
