@@ -23,9 +23,8 @@ module.exports = merge(common, {
     inline: true,
     port: 8080,
     proxy: {
-      '/students': {
-        target: 'http://localhost:3500',
-      },
+      context: ['/api', '/student'],
+      target: 'http://localhost:3500',
     },
     headers: {
       'Access-Control-Allow-Origin': '*',

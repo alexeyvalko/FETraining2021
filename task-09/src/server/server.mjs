@@ -6,7 +6,7 @@ const PORT = 3500;
 const serverHandler = (req, res) => {
   try {
     const { url, method } = req;
-    if (url === '/students' && method === 'GET') {
+    if (url === '/api' && method === 'GET') {
       const students = getStudents()
       res.writeHead(200, { 'Content-type': 'application/json' });
       res.end(JSON.stringify(students));
