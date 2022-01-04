@@ -1,6 +1,13 @@
 {
   "env": {
-    "browser": true
+    "browser": true,
+    "node": true
+  },
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "allowImportExportEverywhere": "true",
+    "requireConfigFile" : false
   },
   "extends": [
     "airbnb-base",
@@ -9,6 +16,8 @@
   ],
   "rules": {
     "class-methods-use-this": 0,
-    "no-console": 0
+    "no-console": 0,
+    "import/extensions": "off",
+   "no-underscore-dangle":"off"
   }
 }

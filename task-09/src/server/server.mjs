@@ -1,12 +1,15 @@
 import { createServer } from 'http';
+import { getStudents } from './utils.mjs';
 
 const PORT = 3500;
 
 const serverHandler = (req, res) => {
   try {
     const { url, method } = req;
-    if (url === '/api' && method === 'GET') {
-      res.end(JSON.stringify({ message: 'Hello word' }));
+    if (url === '/students' && method === 'GET') {
+      const students = getStudents()
+      res.writeHead(200, { 'Content-type': 'application/json' });
+      res.end(JSON.stringify(students));
     } else {
       res.writeHead(500);
       res.end('Internal Server Error');

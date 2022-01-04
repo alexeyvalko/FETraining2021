@@ -3,6 +3,7 @@ export default class Input {
     this.inputContainer = document.createElement('div');
     this.label = document.createElement('label');
     this.input = document.createElement('input');
+    
     this.input.value = value;
     this.label.textContent = label;
     this.label.htmlFor = label
@@ -11,7 +12,6 @@ export default class Input {
     this.input.classList.add('input');
     this.label.classList.add('label');
     this.inputContainer.classList.add('input-container');
-
     this.inputContainer.append(this.label, this.input)
   }
 }

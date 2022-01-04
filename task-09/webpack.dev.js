@@ -20,6 +20,17 @@ module.exports = merge(common, {
   devServer: {
     open: true,
     compress: true,
+    inline: true,
     port: 8080,
+    proxy: {
+      '/students': {
+        target: 'http://localhost:3500',
+      },
+    },
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Methods': '*',
+    },
   },
 });

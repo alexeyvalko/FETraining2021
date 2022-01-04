@@ -1,7 +1,11 @@
 import { readFileSync, writeFileSync } from 'fs';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export const getStudents = () => {
-  const data = readFileSync('./students.json');
+  const data = readFileSync(`${__dirname}/students.json`);
   const students = JSON.parse(data);
   return students;
 };
@@ -9,8 +13,7 @@ export const getStudents = () => {
 export const addStudent = (student) => {
   const studentObj = student;
   const students = getStudents();
-  studentObj.id = Date.now();
   students.push(studentObj)
   const data = JSON.stringify(students)
-  writeFileSync('./students.json', data);
+  writeFileSync(`${__dirname}/students.json`, data);
 };

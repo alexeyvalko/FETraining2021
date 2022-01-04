@@ -5,15 +5,17 @@
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "dev": "webpack serve --config webpack.dev.js",
-    "server": "node ./src/server/server.js",
+    "server": "node ./src/server/server.mjs",
     "lint": "eslint src --fix"
   },
   "keywords": [],
   "author": "Alexey Valko",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.16.7",
+    "@babel/eslint-parser": "^7.16.5",
     "css-loader": "^5.2.4",
-    "eslint": "^8.2.0",
+    "eslint": "^8.6.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.2",
