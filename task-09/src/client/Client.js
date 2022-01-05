@@ -1,6 +1,6 @@
 import Input from './Input';
 import Button from './Button';
-import { getStudent } from './requests';
+import { getStudent, addStudent, updateStudent, delStudent } from './requests';
 
 class Client {
   constructor() {
@@ -19,11 +19,11 @@ class Client {
   }
 
   async getStudent() {
-    this.student = await getStudent(this.currentStudent)
+    this.student = await getStudent(this.currentStudent);
   }
 
   addButtons() {
-    const buttonNames = ['prev', 'insert', 'Edit', 'Next'];
+    const buttonNames = ['Prev', 'insert', 'Edit', 'Del', 'Next'];
     const buttons = buttonNames.map((name) => {
       const button = new Button(name).element;
       return button;
@@ -44,11 +44,57 @@ class Client {
     this.container.append(...inputs);
   }
 
+  addListeners() {
+    const handleClick = async (e) => {
+      const button = e.target.textContent;
+      switch (button) {
+        case 'Next':
+          this.currentStudent += 1;
+          await this.getStudent();
+          this.addInputs(this.student);
+          this.addButtonContainer();
+          break;
+        case 'Prev':
+          this.currentStudent =  this.currentStudent > 0 ? this.currentStudent-1 : 0;
+          await this.getStudent();
+          this.addInputs(this.student);
+          this.addButtonContainer();
+          break;
+        case 'insert':
+          await addStudent(this.student);
+          break;
+        case 'Del':
+          console.log('aa')
+            await delStudent(this.currentStudent);
+            this.currentStudent += 1;
+            await this.getStudent();
+            this.addInputs(this.student);
+            this.addButtonContainer();
+            break;
+        case 'Edit':
+          await updateStudent(this.student, this.currentStudent);
+          break;
+        default:
+          console.log(`Sorry, we are out of ${button}.`);
+      }
+    };
+
+    const inputListener = (e) => {
+      const input = e.target;
+      const key = input.dataset.name;
+      this.student[key] = input.value;
+    };
+
+    this.container.addEventListener('input', inputListener);
+    this.buttonContainer.addEventListener('click', handleClick);
+  }
+
   async render() {
     await this.getStudent();
     this.addInputs(this.student);
     this.addButtons();
     this.addButtonContainer();
+    this.addListeners();
   }
 }
 

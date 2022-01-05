@@ -1,16 +1,1 @@
-[
-  {
-  "id": "1",
-   "firstName": "Alex",
-   "secondName": "Ivanov",
-   "age": 11,
-   "speciality": "teacher"
-},
-{
-  "id": "2",
-   "firstName": "Bob",
-   "secondName": "Anderson",
-   "age": 12,
-   "speciality": "policeman"
-}
-]
+[{"id":"2","firstName":"Bob","secondName":"Anderson","age":12,"speciality":"policeman"},{"id":"2","firstName":"Bobgg","secondName":"Anderson","age":12,"speciality":"policeman"}]

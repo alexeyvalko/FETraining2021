@@ -8,6 +8,7 @@ export default class Input {
     this.label.textContent = label;
     this.label.htmlFor = label
     this.input.id = label;
+    this.input.dataset.name = label
     this.input.type = 'text';
     this.input.classList.add('input');
     this.label.classList.add('label');
