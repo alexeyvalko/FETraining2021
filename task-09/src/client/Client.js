@@ -1,6 +1,6 @@
 import Input from './Input';
 import Button from './Button';
-import request from './request';
+import { getStudent } from './requests';
 
 class Client {
   constructor() {
@@ -9,18 +9,17 @@ class Client {
     this.container.classList.add('container');
     this.buttonContainer.classList.add('button-container');
 
-    this.students = [];
-
-    this.currentStudent = 0
+    this.allStudents = [];
+    this.student = null;
+    this.currentStudent = 0;
   }
 
   addButtonContainer() {
     this.container.append(this.buttonContainer);
   }
 
-
-  async getStudents() {
-    this.students = await request()
+  async getStudent() {
+    this.student = await getStudent(this.currentStudent)
   }
 
   addButtons() {
@@ -46,8 +45,8 @@ class Client {
   }
 
   async render() {
-    await this.getStudents();
-    this.addInputs(this.students[this.currentStudent]);
+    await this.getStudent();
+    this.addInputs(this.student);
     this.addButtons();
     this.addButtonContainer();
   }
